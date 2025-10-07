@@ -1,0 +1,35 @@
+<svg width="3000" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark gradient background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0F"/>
+      <stop offset="50%" stop-color="#0A0A0F"/>
+      <stop offset="100%" stop-color="#151520"/>
+    </linearGradient>
+
+    <!-- Neon glow filter -->
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="3000" height="200" fill="url(#bgGradient)"/>
+
+  <!-- Subtle neon accent lines -->
+  <line x1="0" y1="180" x2="1000" y2="180" stroke="#00D9FF" stroke-width="2" opacity="0.3" filter="url(#neonGlow)"/>
+  <line x1="1000" y1="180" x2="2000" y2="180" stroke="#FF006E" stroke-width="2" opacity="0.3" filter="url(#neonGlow)"/>
+  <line x1="2000" y1="180" x2="3000" y2="180" stroke="#9C27B0" stroke-width="2" opacity="0.3" filter="url(#neonGlow)"/>
+
+  <!-- Small accent dots scattered -->
+  <circle cx="200" cy="50" r="2" fill="#00D9FF" opacity="0.6"/>
+  <circle cx="800" cy="80" r="2" fill="#FF006E" opacity="0.5"/>
+  <circle cx="1400" cy="40" r="2" fill="#1DE9B6" opacity="0.6"/>
+  <circle cx="1900" cy="70" r="2" fill="#9C27B0" opacity="0.5"/>
+  <circle cx="2400" cy="45" r="2" fill="#BB86FC" opacity="0.4"/>
+  <circle cx="2800" cy="90" r="2" fill="#00D9FF" opacity="0.5"/>
+</svg>

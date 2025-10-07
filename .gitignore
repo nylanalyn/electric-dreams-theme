@@ -16,3 +16,12 @@
 
 # OS files
 Thumbs.db
+
+# Node/npm
+node_modules/
+package-lock.json
+*.vsix
+
+# Firefox extension builds
+*.zip
+*.xpi

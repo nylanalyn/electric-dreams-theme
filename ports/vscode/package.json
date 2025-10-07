@@ -1,12 +1,10 @@
 {
-  "name": "electric-dreams",
-  "displayName": "Electric Dreams",
+  "name": "electric-dreams-neon",
+  "displayName": "Electric Dreams Neon",
   "description": "A bold neon colorscheme with electric cyan, hot magenta, and vibrant purple on deep black backgrounds",
   "version": "1.0.0",
   "publisher": "nylanalyn",
-  "author": {
-    "name": "nylanalyn"
-  },
+  "author": "nylanalyn",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -31,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nylanalyn/electric-dreams-theme"
+    "url": "git+https://github.com/nylanalyn/electric-dreams-theme.git"
   },
   "bugs": {
     "url": "https://github.com/nylanalyn/electric-dreams-theme/issues"
@@ -46,5 +44,8 @@
         "path": "./themes/electric-dreams-color-theme.json"
       }
     ]
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.6.2"
   }
 }
