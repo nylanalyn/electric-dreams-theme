@@ -17,7 +17,7 @@ A neon-inspired tmux theme featuring electric cyan and hot magenta accents.
 1. Add to your `~/.tmux.conf`:
 
 ```bash
-set -g @plugin 'nullveil/tmux-electric-dreams'
+set -g @plugin 'nylanalyn/electric-dreams-theme'
 ```
 
 2. Install the plugin:
@@ -35,7 +35,7 @@ tmux source ~/.tmux.conf
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/nullveil/tmux-electric-dreams ~/.config/tmux/themes/electric-dreams
+git clone https://github.com/nylanalyn/electric-dreams-theme ~/.config/tmux/themes/electric-dreams
 ```
 
 2. Source the theme in your `~/.tmux.conf`:
@@ -61,7 +61,7 @@ tmux source ~/.tmux.conf
 ```bash
 # Download theme
 curl -o ~/.tmux-electric-dreams.conf \
-  https://raw.githubusercontent.com/nullveil/tmux-electric-dreams/main/electric-dreams.tmuxtheme
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.tmuxtheme
 
 # Add to ~/.tmux.conf
 echo "source-file ~/.tmux-electric-dreams.conf" >> ~/.tmux.conf

@@ -182,8 +182,8 @@ npm install -g web-ext
 
 ```bash
 # Clone the repository
-git clone https://github.com/nullveil/firefox-electric-dreams
-cd firefox-electric-dreams
+git clone https://github.com/nylanalyn/electric-dreams-theme
+cd electric-dreams-theme
 
 # Run in development mode
 web-ext run
@@ -245,17 +245,17 @@ Temporary installations are removed when Firefox closes. Use permanent installat
 
 ## Related Projects
 
-- [Electric Dreams](https://github.com/nullveil/electric-dreams) - Main theme repository
-- [Electric Dreams for Vim](https://github.com/nullveil/vim-electric-dreams)
-- [Electric Dreams for VSCode](https://github.com/nullveil/vscode-electric-dreams)
-- [Electric Dreams for Hyprland](https://github.com/nullveil/hyprland-electric-dreams)
-- [Electric Dreams for Kitty](https://github.com/nullveil/kitty-electric-dreams)
+- [Electric Dreams](https://github.com/nylanalyn/electric-dreams-theme) - Main theme repository
+- [Electric Dreams for Vim](https://github.com/nylanalyn/electric-dreams-theme)
+- [Electric Dreams for VSCode](https://github.com/nylanalyn/electric-dreams-theme)
+- [Electric Dreams for Hyprland](https://github.com/nylanalyn/electric-dreams-theme)
+- [Electric Dreams for Kitty](https://github.com/nylanalyn/electric-dreams-theme)
 
 ## Contributing
 
 Found a bug or want to suggest improvements?
 
-1. Open an issue: https://github.com/nullveil/firefox-electric-dreams/issues
+1. Open an issue: https://github.com/nylanalyn/electric-dreams-theme/issues
 2. Submit a pull request with:
    - Description of changes
    - Screenshots if UI changes
@@ -281,7 +281,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## Credits
 
-**Created by**: [nullveil](https://github.com/nullveil)
+**Created by**: [nylanalyn](https://github.com/nylanalyn)
 
 **Inspired by**: Neon aesthetics, cyberpunk design, and dark browser themes
 
@@ -291,8 +291,8 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ### ⭐ Star this repo if you love Electric Dreams! ⭐
 
-[Report Bug](https://github.com/nullveil/firefox-electric-dreams/issues) ·
-[Request Feature](https://github.com/nullveil/firefox-electric-dreams/issues) ·
+[Report Bug](https://github.com/nylanalyn/electric-dreams-theme/issues) ·
+[Request Feature](https://github.com/nylanalyn/electric-dreams-theme/issues) ·
 [View Website](https://electric-dreams-theme.com)
 
 </div>

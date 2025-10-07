@@ -250,8 +250,8 @@ blur {
 
 ## Related Projects
 
-- [Electric Dreams](https://github.com/nullveil/electric-dreams) - Main theme repository
-- [Electric Dreams for Vim](https://github.com/nullveil/vim-electric-dreams) - Vim colorscheme
+- [Electric Dreams](https://github.com/nylanalyn/electric-dreams-theme) - Main theme repository
+- [Electric Dreams for Vim](https://github.com/nylanalyn/electric-dreams-theme) - Vim colorscheme
 
 ## Contributing
 
@@ -263,6 +263,6 @@ MIT License - see LICENSE file for details
 
 ## Credits
 
-Created by [nullveil](https://github.com/nullveil)
+Created by [nylanalyn](https://github.com/nylanalyn)
 
 Inspired by neon aesthetics and cyberpunk design.

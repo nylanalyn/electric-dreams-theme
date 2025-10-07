@@ -39,7 +39,7 @@ mkdir -p ~/.config/kitty/themes
 2. Download the theme:
 ```bash
 curl -o ~/.config/kitty/themes/electric-dreams.conf \
-  https://raw.githubusercontent.com/nullveil/kitty-electric-dreams/main/electric-dreams.conf
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/kitty/electric-dreams.conf
 ```
 
 3. Include it in your `~/.config/kitty/kitty.conf`:
@@ -325,9 +325,9 @@ Without a compositor, remove or comment out:
 
 ## Related Projects
 
-- [Electric Dreams](https://github.com/nullveil/electric-dreams) - Main theme repository
-- [Electric Dreams for Vim](https://github.com/nullveil/vim-electric-dreams)
-- [Electric Dreams for Hyprland](https://github.com/nullveil/hyprland-electric-dreams)
+- [Electric Dreams](https://github.com/nylanalyn/electric-dreams-theme) - Main theme repository
+- [Electric Dreams for Vim](https://github.com/nylanalyn/electric-dreams-theme)
+- [Electric Dreams for Hyprland](https://github.com/nylanalyn/electric-dreams-theme)
 
 ## Screenshots
 
@@ -343,6 +343,6 @@ MIT License - see LICENSE file for details
 
 ## Credits
 
-Created by [nullveil](https://github.com/nullveil)
+Created by [nylanalyn](https://github.com/nylanalyn)
 
 Inspired by neon aesthetics and cyberpunk design.

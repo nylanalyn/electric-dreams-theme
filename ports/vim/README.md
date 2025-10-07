@@ -25,7 +25,7 @@
 Add this to your `~/.vimrc` or `~/.config/nvim/init.vim`:
 
 ```vim
-Plug 'nullveil/vim-electric-dreams'
+Plug 'nylanalyn/electric-dreams-theme'
 ```
 
 Then run `:PlugInstall`
@@ -35,7 +35,7 @@ Then run `:PlugInstall`
 Add this to your `~/.vimrc`:
 
 ```vim
-Plugin 'nullveil/vim-electric-dreams'
+Plugin 'nylanalyn/electric-dreams-theme'
 ```
 
 Then run `:PluginInstall`
@@ -44,7 +44,7 @@ Then run `:PluginInstall`
 
 ```bash
 cd ~/.vim/bundle
-git clone https://github.com/nullveil/vim-electric-dreams.git
+git clone https://github.com/nylanalyn/electric-dreams-theme.git
 ```
 
 ### Using Vim 8's Native Package Manager
@@ -52,7 +52,7 @@ git clone https://github.com/nullveil/vim-electric-dreams.git
 ```bash
 mkdir -p ~/.vim/pack/themes/start
 cd ~/.vim/pack/themes/start
-git clone https://github.com/nullveil/vim-electric-dreams.git
+git clone https://github.com/nylanalyn/electric-dreams-theme.git
 ```
 
 ### Manual Installation
@@ -62,7 +62,7 @@ git clone https://github.com/nullveil/vim-electric-dreams.git
 
 ```bash
 mkdir -p ~/.vim/colors
-curl -o ~/.vim/colors/electric_dreams.vim https://raw.githubusercontent.com/nullveil/vim-electric-dreams/main/colors/electric_dreams.vim
+curl -o ~/.vim/colors/electric_dreams.vim https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/vim/colors/electric_dreams.vim
 ```
 
 ## Activation
@@ -102,7 +102,7 @@ vim.cmd([[colorscheme electric_dreams]])
 | Vibrant Purple | `#9C27B0` | Constants, numbers |
 | Turquoise | `#1DE9B6` | Strings, success |
 
-[View full color palette →](https://github.com/nullveil/electric-dreams)
+[View full color palette →](https://github.com/nylanalyn/electric-dreams-theme)
 
 ## Screenshots
 
@@ -131,7 +131,7 @@ hi Comment gui=NONE cterm=NONE
 
 ## Related Projects
 
-- [Electric Dreams](https://github.com/nullveil/electric-dreams) - The original theme repository
+- [Electric Dreams](https://github.com/nylanalyn/electric-dreams-theme) - The original theme repository
 - More ports coming soon!
 
 ## Contributing
@@ -144,6 +144,6 @@ MIT License - see LICENSE file for details
 
 ## Credits
 
-Created by [nullveil](https://github.com/nullveil)
+Created by [nylanalyn](https://github.com/nylanalyn)
 
 Inspired by bold neon aesthetics and high-contrast design.

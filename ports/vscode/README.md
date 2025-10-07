@@ -53,8 +53,8 @@ Or install from command palette:
 
 ```bash
 # Clone the repository
-git clone https://github.com/nullveil/vscode-electric-dreams
-cd vscode-electric-dreams
+git clone https://github.com/nylanalyn/electric-dreams-theme
+cd electric-dreams-theme
 
 # Copy to extensions directory
 cp -r . ~/.vscode/extensions/electric-dreams
@@ -276,7 +276,7 @@ npm install -g @vscode/vsce
 vsce package
 
 # Login to publisher account
-vsce login nullveil
+vsce login nylanalyn
 
 # Publish
 vsce publish
@@ -303,16 +303,16 @@ vsce package
 
 ## Related Projects
 
-- [Electric Dreams](https://github.com/nullveil/electric-dreams) - Main theme repository
-- [Electric Dreams for Vim](https://github.com/nullveil/vim-electric-dreams)
-- [Electric Dreams for Hyprland](https://github.com/nullveil/hyprland-electric-dreams)
-- [Electric Dreams for Kitty](https://github.com/nullveil/kitty-electric-dreams)
+- [Electric Dreams](https://github.com/nylanalyn/electric-dreams-theme) - Main theme repository
+- [Electric Dreams for Vim](https://github.com/nylanalyn/electric-dreams-theme)
+- [Electric Dreams for Hyprland](https://github.com/nylanalyn/electric-dreams-theme)
+- [Electric Dreams for Kitty](https://github.com/nylanalyn/electric-dreams-theme)
 
 ## Contributing
 
 Found a bug or want to suggest an improvement?
 
-1. Check existing issues: https://github.com/nullveil/vscode-electric-dreams/issues
+1. Check existing issues: https://github.com/nylanalyn/electric-dreams-theme/issues
 2. Create a new issue with:
    - VSCode version
    - Language/file type
@@ -334,7 +334,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## Credits
 
-**Created by**: [nullveil](https://github.com/nullveil)
+**Created by**: [nylanalyn](https://github.com/nylanalyn)
 
 **Inspired by**: Neon aesthetics, cyberpunk design, and high-contrast themes
 
@@ -346,8 +346,8 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ### ⭐ Star this repo if you love Electric Dreams! ⭐
 
-[Report Bug](https://github.com/nullveil/vscode-electric-dreams/issues) ·
-[Request Feature](https://github.com/nullveil/vscode-electric-dreams/issues) ·
+[Report Bug](https://github.com/nylanalyn/electric-dreams-theme/issues) ·
+[Request Feature](https://github.com/nylanalyn/electric-dreams-theme/issues) ·
 [View Website](https://electric-dreams-theme.com)
 
 </div>

@@ -3,8 +3,8 @@
   "name": "Electric Dreams",
   "version": "1.0.0",
   "description": "A bold neon theme featuring electric cyan, hot magenta, and vibrant purple on deep black backgrounds",
-  "author": "nullveil",
-  "homepage_url": "https://github.com/nullveil/firefox-electric-dreams",
+  "author": "nylanalyn",
+  "homepage_url": "https://github.com/nylanalyn/electric-dreams-theme",
 
   "theme": {
     "colors": {
@@ -57,7 +57,7 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "electric-dreams@nullveil",
+      "id": "electric-dreams@nylanalyn",
       "strict_min_version": "60.0"
     }
   }

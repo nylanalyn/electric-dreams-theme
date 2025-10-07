@@ -1,7 +1,7 @@
 " Electric Dreams - A bold neon colorscheme for Vim
-" Maintainer: nullveil
+" Maintainer: nylanalyn
 " Version: 1.0.0
-" URL: https://github.com/nullveil/electric-dreams
+" URL: https://github.com/nylanalyn/electric-dreams-theme
 
 " Initialization {{{
 highlight clear
