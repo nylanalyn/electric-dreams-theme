@@ -118,7 +118,7 @@ electric-dreams-theme/
 │   ├── vim/
 │   ├── vscode/
 │   └── waybar/
-├── website/            # Theme documentation website
+├── docs/            # Theme documentation website
 ├── electric-dreams.tmux  # TPM entry point for tmux
 └── README.md           # This file
 ```

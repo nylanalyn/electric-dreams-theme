@@ -42,7 +42,7 @@ git push -u origin main
 3. Scroll down and click **Pages** in the left sidebar
 4. Under **Source**, select:
    - Branch: `main`
-   - Folder: `/website`
+   - Folder: `/docs`
 5. Click **Save**
 6. Wait 1-2 minutes for GitHub to build your site
 
@@ -91,8 +91,8 @@ If you have a custom domain:
 - Wait a few minutes - first build can take time
 
 ### 404 errors on website?
-- Verify Pages is set to deploy from `/website` folder
-- Check that `index.html` exists in the `website/` directory
+- Verify Pages is set to deploy from `/docs` folder
+- Check that `index.html` exists in the `docs/` directory
 
 ### Raw file URLs not working?
 - URLs must use `raw.githubusercontent.com`, not `github.com`

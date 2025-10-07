@@ -21,7 +21,7 @@ electric-dreams-theme/
 │   ├── vim/
 │   ├── vscode/
 │   └── waybar/
-└── website/               # GitHub Pages website
+└── docs/               # GitHub Pages website
     ├── index.html
     └── [port]-electric-dreams.html
 ```
