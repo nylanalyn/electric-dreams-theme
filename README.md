@@ -57,12 +57,14 @@ curl -o ~/.config/kitty/themes/electric-dreams.conf \
 echo "include themes/electric-dreams.conf" >> ~/.config/kitty/kitty.conf
 ```
 
-### tmux (via TPM)
-Add to `~/.tmux.conf`:
+### tmux
 ```bash
-set -g @plugin 'nylanalyn/electric-dreams-theme'
+mkdir -p ~/.config/tmux/themes
+curl -o ~/.config/tmux/themes/electric-dreams.conf \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf
+echo "source-file ~/.config/tmux/themes/electric-dreams.conf" >> ~/.tmux.conf
+tmux source-file ~/.tmux.conf
 ```
-Then press `prefix + I` to install.
 
 ### Vim/Neovim
 Using vim-plug, add to your config:

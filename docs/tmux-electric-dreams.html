@@ -487,70 +487,47 @@
             <h2>Installation</h2>
 
             <div class="tabs">
-                <div class="tab active" onclick="showTab('tpm')">TPM (Recommended)</div>
-                <div class="tab" onclick="showTab('manual')">Manual</div>
-                <div class="tab" onclick="showTab('quick')">Quick Install</div>
+                <div class="tab active" onclick="showTab('quick')">Quick Install (Recommended)</div>
+                <div class="tab" onclick="showTab('manual')">Manual Copy-Paste</div>
             </div>
 
-            <div id="tpm" class="tab-content active">
-                <h3>Install via Tmux Plugin Manager</h3>
+            <div id="quick" class="tab-content active">
+                <h3>Quick Install</h3>
 
-                <p><strong>Step 1: Add plugin to tmux config</strong></p>
-                <p>Add this line to your <code>~/.tmux.conf</code>:</p>
-                <pre><code>set -g @plugin 'nullveil/tmux-electric-dreams'</code></pre>
+                <p>Download and apply the theme in one command:</p>
+                <pre><code># Create theme directory
+mkdir -p ~/.config/tmux/themes
 
-                <p><strong>Step 2: Install the plugin</strong></p>
-                <p>Press <code>prefix + I</code> (capital i, usually Ctrl+B then Shift+I) to fetch and install the plugin.</p>
+# Download theme file
+curl -o ~/.config/tmux/themes/electric-dreams.conf \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf
 
-                <p>Or run manually:</p>
-                <pre><code>~/.tmux/plugins/tpm/bin/install_plugins</code></pre>
+# Add to tmux config
+echo "source-file ~/.config/tmux/themes/electric-dreams.conf" >> ~/.tmux.conf
 
-                <p><strong>Step 3: Reload tmux</strong></p>
-                <pre><code>tmux source ~/.tmux.conf</code></pre>
+# Reload tmux
+tmux source-file ~/.tmux.conf</code></pre>
 
-                <h3>Don't have TPM?</h3>
-                <p>Install Tmux Plugin Manager first:</p>
-                <pre><code>git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm</code></pre>
-                <p>Then add this to the bottom of <code>~/.tmux.conf</code>:</p>
-                <pre><code># Initialize TPM (keep this at the very bottom)
-run '~/.tmux/plugins/tpm/tpm'</code></pre>
+                <p>That's it! The theme should now be active.</p>
             </div>
 
             <div id="manual" class="tab-content">
                 <h3>Manual Installation</h3>
 
-                <p><strong>Step 1: Clone the repository</strong></p>
-                <pre><code>git clone https://github.com/nylanalyn/electric-dreams-theme \
-  ~/.config/tmux/themes/electric-dreams</code></pre>
+                <p><strong>Step 1: Download the theme file</strong></p>
+                <p>Visit <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf" style="color: #00D9FF;">the theme file on GitHub</a> and copy its contents.</p>
 
-                <p><strong>Step 2: Source in your tmux config</strong></p>
+                <p><strong>Step 2: Create the theme file</strong></p>
+                <pre><code>mkdir -p ~/.config/tmux/themes
+nano ~/.config/tmux/themes/electric-dreams.conf</code></pre>
+                <p>Paste the theme contents and save the file.</p>
+
+                <p><strong>Step 3: Source in your tmux config</strong></p>
                 <p>Add to <code>~/.tmux.conf</code>:</p>
-                <pre><code># Using the .tmux file
-run-shell ~/.config/tmux/themes/electric-dreams/electric-dreams.tmux</code></pre>
+                <pre><code>source-file ~/.config/tmux/themes/electric-dreams.conf</code></pre>
 
-                <p>Or use the .tmuxtheme file:</p>
-                <pre><code># Using the .tmuxtheme file
-source-file ~/.config/tmux/themes/electric-dreams/electric-dreams.tmuxtheme</code></pre>
-
-                <p><strong>Step 3: Reload tmux</strong></p>
-                <pre><code>tmux source ~/.tmux.conf</code></pre>
-            </div>
-
-            <div id="quick" class="tab-content">
-                <h3>Quick Install (Single File)</h3>
-
-                <p>Download and apply the theme in one go:</p>
-                <pre><code># Download theme file
-curl -o ~/.tmux-electric-dreams.conf \
-  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.tmuxtheme
-
-# Add to tmux config
-echo "source-file ~/.tmux-electric-dreams.conf" >> ~/.tmux.conf
-
-# Reload
-tmux source ~/.tmux.conf</code></pre>
-
-                <p>That's it! The theme should now be active.</p>
+                <p><strong>Step 4: Reload tmux</strong></p>
+                <pre><code>tmux source-file ~/.tmux.conf</code></pre>
             </div>
         </section>
 
