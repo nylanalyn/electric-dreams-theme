@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Visual Studio Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #FF006E;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #00D9FF;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .vscode-preview {
+            background: #151520;
+            border: 2px solid #00D9FF;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .vscode-titlebar {
+            background: #0A0A0F;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #4A4A6A;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .vscode-tab {
+            background: #0A0A0F;
+            padding: 0.5rem 1rem;
+            border-bottom: 2px solid #00D9FF;
+            color: #D0D0E0;
+            font-size: 0.85rem;
+        }
+
+        .vscode-editor {
+            display: flex;
+        }
+
+        .vscode-sidebar {
+            background: #0A0A0F;
+            width: 200px;
+            padding: 1rem;
+            border-right: 1px solid #4A4A6A;
+            font-size: 0.85rem;
+        }
+
+        .vscode-code {
+            flex: 1;
+            background: #0A0A0F;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .vscode-code .line-number {
+            color: #4A4A6A;
+            display: inline-block;
+            width: 30px;
+            text-align: right;
+            margin-right: 1rem;
+            user-select: none;
+        }
+
+        .vscode-code .keyword { color: #FF006E; font-weight: bold; }
+        .vscode-code .function { color: #00D9FF; font-weight: bold; }
+        .vscode-code .string { color: #1DE9B6; }
+        .vscode-code .number { color: #9C27B0; }
+        .vscode-code .comment { color: #4A4A6A; font-style: italic; }
+        .vscode-code .type { color: #00D9FF; }
+
+        .install-steps {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            margin: 2rem 0;
+        }
+
+        .install-step {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .step-number {
+            background: #00D9FF;
+            color: #0A0A0F;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        th {
+            color: #00D9FF;
+            background: #151520;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #151520;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            border: 1px solid #4A4A6A;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .download-btn.marketplace {
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+            color: #fff;
+        }
+
+        .download-btn.marketplace:hover {
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+
+        .tip-box {
+            background: #1A1A2E;
+            border-left: 4px solid #1DE9B6;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box strong {
+            color: #1DE9B6;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for VSCode</h1>
+            <p class="subtitle">Neon theme for Visual Studio Code</p>
+        </header>
+
+        <section>
+            <h2>Preview</h2>
+            <div class="vscode-preview">
+                <div class="vscode-titlebar">
+                    <span style="color: #00D9FF;">●</span>
+                    <span style="color: #D0D0E0; font-size: 0.85rem;">example.ts - Electric Dreams</span>
+                </div>
+                <div class="vscode-tab">example.ts</div>
+                <div class="vscode-editor">
+                    <div class="vscode-sidebar">
+                        <div style="color: #00D9FF; margin-bottom: 0.5rem; font-weight: bold;">EXPLORER</div>
+                        <div style="padding-left: 1rem;">
+                            <div>📁 src</div>
+                            <div style="padding-left: 1rem;">
+                                <div>📄 example.ts</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vscode-code">
+<div><span class="line-number">1</span><span class="keyword">import</span> { useState } <span class="keyword">from</span> <span class="string">'react'</span>;</div>
+<div><span class="line-number">2</span></div>
+<div><span class="line-number">3</span><span class="keyword">interface</span> <span class="type">User</span> {</div>
+<div><span class="line-number">4</span>  name: <span class="keyword">string</span>;</div>
+<div><span class="line-number">5</span>  age: <span class="number">number</span>;</div>
+<div><span class="line-number">6</span>}</div>
+<div><span class="line-number">7</span></div>
+<div><span class="line-number">8</span><span class="keyword">function</span> <span class="function">greet</span>(user: <span class="type">User</span>) {</div>
+<div><span class="line-number">9</span>  <span class="keyword">return</span> <span class="string">`Hello, </span><span class="string">${</span>user.name<span class="string">}</span><span class="string">!`</span>;</div>
+<div><span class="line-number">10</span>}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Complete UI Theme</div>
+                    <p>Every VSCode element styled with Electric Dreams colors</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <div class="feature-title">Syntax Highlighting</div>
+                    <p>Optimized for all major programming languages</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">High Contrast</div>
+                    <p>Excellent readability with neon on black</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <div class="feature-title">Git Integration</div>
+                    <p>Color-coded git status and decorations</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <div class="install-steps">
+                <h3 style="margin-top: 0;">From VSCode Marketplace</h3>
+                <div class="install-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Open Extensions</strong><br>
+                        Press <code>Ctrl+Shift+X</code> (Windows/Linux) or <code>Cmd+Shift+X</code> (macOS)
+                    </div>
+                </div>
+                <div class="install-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Search for "Electric Dreams"</strong><br>
+                        Type in the search box and press Enter
+                    </div>
+                </div>
+                <div class="install-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Install and Apply</strong><br>
+                        Click Install, then Set Color Theme
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Quick Tip:</strong> Press <code>Ctrl+K Ctrl+T</code> (or <code>Cmd+K Cmd+T</code> on macOS) to quickly switch themes!
+            </div>
+
+            <h3>Manual Installation</h3>
+            <pre><code># Copy to extensions directory
+cp -r vscode-electric-dreams ~/.vscode/extensions/electric-dreams
+
+# Reload VSCode
+# Press Ctrl+Shift+P → "Developer: Reload Window"</code></pre>
+        </section>
+
+        <section>
+            <h2>Syntax Colors</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Color</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keywords</td>
+                        <td><span class="color-swatch" style="background: #FF006E;"></span><code>#FF006E</code></td>
+                        <td><code style="color: #FF006E; font-weight: bold;">if</code>, <code style="color: #FF006E; font-weight: bold;">return</code>, <code style="color: #FF006E; font-weight: bold;">class</code></td>
+                    </tr>
+                    <tr>
+                        <td>Functions</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span><code>#00D9FF</code></td>
+                        <td><code style="color: #00D9FF; font-weight: bold;">myFunction()</code></td>
+                    </tr>
+                    <tr>
+                        <td>Strings</td>
+                        <td><span class="color-swatch" style="background: #1DE9B6;"></span><code>#1DE9B6</code></td>
+                        <td><code style="color: #1DE9B6;">"Hello World"</code></td>
+                    </tr>
+                    <tr>
+                        <td>Numbers</td>
+                        <td><span class="color-swatch" style="background: #9C27B0;"></span><code>#9C27B0</code></td>
+                        <td><code style="color: #9C27B0;">42</code>, <code style="color: #9C27B0;">3.14</code></td>
+                    </tr>
+                    <tr>
+                        <td>Types/Classes</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span><code>#00D9FF</code></td>
+                        <td><code style="color: #00D9FF;">Array</code>, <code style="color: #00D9FF;">Promise</code></td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td><span class="color-swatch" style="background: #4A4A6A;"></span><code>#4A4A6A</code></td>
+                        <td><code style="color: #4A4A6A; font-style: italic;">// Comment</code></td>
+                    </tr>
+                    <tr>
+                        <td>Errors</td>
+                        <td><span class="color-swatch" style="background: #FF1744;"></span><code>#FF1744</code></td>
+                        <td>Error highlights</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Recommended Settings</h2>
+            <p>Add these to your <code>settings.json</code> for the best experience:</p>
+
+            <pre><code>{
+  "editor.fontFamily": "JetBrains Mono, monospace",
+  "editor.fontSize": 13,
+  "editor.fontLigatures": true,
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "smooth",
+  "editor.lineHeight": 1.6,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.semanticHighlighting.enabled": true
+}</code></pre>
+
+            <h3>Install JetBrains Mono Font</h3>
+            <pre><code># Arch/Manjaro
+sudo pacman -S ttf-jetbrains-mono
+
+# Ubuntu/Debian
+sudo apt install fonts-jetbrains-mono
+
+# macOS
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono</code></pre>
+        </section>
+
+        <section>
+            <h2>Language Support</h2>
+            <p>Optimized syntax highlighting for:</p>
+            <ul>
+                <li>JavaScript, TypeScript, JSX, TSX</li>
+                <li>Python, Java, C#, Go, Rust</li>
+                <li>HTML, CSS, SCSS, Less</li>
+                <li>Markdown, JSON, YAML, TOML</li>
+                <li>Bash, PowerShell, Zsh</li>
+                <li>C, C++, PHP, Ruby</li>
+                <li>And many more...</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <div class="download-section">
+                <button class="download-btn marketplace" onclick="window.open('https://marketplace.visualstudio.com/vscode', '_blank')">Install from Marketplace</button>
+                <button class="download-btn" onclick="downloadExtension()">Download VSIX</button>
+                <a href="vscode-electric-dreams/README.md" class="download-btn" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li><strong>VSCode:</strong> 1.60.0 or later</li>
+                <li><strong>Font:</strong> JetBrains Mono (recommended)</li>
+                <li><strong>Display:</strong> True color (24-bit) support</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadExtension() {
+            alert('To install the extension:\n\n1. Download the .vsix file from GitHub releases\n2. Open VSCode\n3. Press Ctrl+Shift+P\n4. Type "Install from VSIX"\n5. Select the downloaded file');
+        }
+    </script>
+</body>
+</html>

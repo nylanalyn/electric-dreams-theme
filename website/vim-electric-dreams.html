@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Vim</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .install-section {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            margin: 2rem 0;
+        }
+
+        .install-section:hover {
+            border-color: #FF006E;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 1rem 0.5rem 1rem 0;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .download-btn.alt {
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+            color: #fff;
+        }
+
+        .download-btn.alt:hover {
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        th {
+            color: #00D9FF;
+            background: #151520;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #151520;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            border: 1px solid #4A4A6A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for Vim</h1>
+            <p class="subtitle">Bold neon colors for your editor</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <ul class="feature-list">
+                <li>High contrast design with dramatic color pops</li>
+                <li>True color (24-bit) support</li>
+                <li>Full TreeSitter syntax highlighting support</li>
+                <li>LSP diagnostics integration</li>
+                <li>Optimized for Neovim and Vim 8+</li>
+                <li>Language-specific highlighting (JS/TS, Python, HTML/CSS, Markdown, etc.)</li>
+                <li>Git integration (GitGutter, Signify)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <div class="install-section">
+                <h3>Using vim-plug</h3>
+                <p>Add this to your <code>~/.vimrc</code> or <code>~/.config/nvim/init.vim</code>:</p>
+                <pre><code>Plug 'nylanalyn/electric-dreams-theme'</code></pre>
+                <p>Then run <code>:PlugInstall</code></p>
+            </div>
+
+            <div class="install-section">
+                <h3>Using Vundle</h3>
+                <p>Add this to your <code>~/.vimrc</code>:</p>
+                <pre><code>Plugin 'nylanalyn/electric-dreams-theme'</code></pre>
+                <p>Then run <code>:PluginInstall</code></p>
+            </div>
+
+            <div class="install-section">
+                <h3>Using Pathogen</h3>
+                <pre><code>cd ~/.vim/bundle
+git clone https://github.com/nylanalyn/electric-dreams-theme.git</code></pre>
+            </div>
+
+            <div class="install-section">
+                <h3>Using Vim 8's Native Package Manager</h3>
+                <pre><code>mkdir -p ~/.vim/pack/themes/start
+cd ~/.vim/pack/themes/start
+git clone https://github.com/nylanalyn/electric-dreams-theme.git</code></pre>
+            </div>
+
+            <div class="install-section">
+                <h3>Manual Installation</h3>
+                <p>Download the colorscheme file and copy it to your colors directory:</p>
+                <pre><code>mkdir -p ~/.vim/colors
+curl -o ~/.vim/colors/electric_dreams.vim \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/vim/colors/electric_dreams.vim</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Activation</h2>
+            <p>Add this to your <code>~/.vimrc</code> or <code>~/.config/nvim/init.vim</code>:</p>
+            <pre><code>" Enable 24-bit true colors
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Set the colorscheme
+colorscheme electric_dreams</code></pre>
+
+            <p>For Neovim users using Lua configuration (<code>~/.config/nvim/init.lua</code>):</p>
+            <pre><code>-- Enable true colors
+vim.opt.termguicolors = true
+
+-- Set the colorscheme
+vim.cmd([[colorscheme electric_dreams]])</code></pre>
+        </section>
+
+        <section>
+            <h2>Color Palette</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Color</th>
+                        <th>Hex</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #0A0A0F;"></span>Pure Black</td>
+                        <td><code>#0A0A0F</code></td>
+                        <td>Main background</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #1A1A2E;"></span>Dark Navy</td>
+                        <td><code>#1A1A2E</code></td>
+                        <td>Floating windows</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #D0D0E0;"></span>Light Lavender</td>
+                        <td><code>#D0D0E0</code></td>
+                        <td>Primary text</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                        <td>Functions, types</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #FF006E;"></span>Hot Magenta</td>
+                        <td><code>#FF006E</code></td>
+                        <td>Keywords, statements</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #FF1744;"></span>Vivid Crimson</td>
+                        <td><code>#FF1744</code></td>
+                        <td>Errors</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #9C27B0;"></span>Vibrant Purple</td>
+                        <td><code>#9C27B0</code></td>
+                        <td>Constants, numbers</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #1DE9B6;"></span>Turquoise</td>
+                        <td><code>#1DE9B6</code></td>
+                        <td>Strings</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #E91E63;"></span>Hot Pink</td>
+                        <td><code>#E91E63</code></td>
+                        <td>Preprocessor</td>
+                    </tr>
+                    <tr>
+                        <td><span class="color-swatch" style="background: #BB86FC;"></span>Soft Violet</td>
+                        <td><code>#BB86FC</code></td>
+                        <td>Special characters</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <p>Get the theme files directly:</p>
+            <button class="download-btn" onclick="downloadVimTheme()">Download Colorscheme</button>
+            <a href="vim-electric-dreams/README.md" class="download-btn alt" download>Download README</a>
+        </section>
+
+        <section>
+            <h2>Compatibility</h2>
+            <ul class="feature-list">
+                <li><strong>Vim:</strong> 8.0+</li>
+                <li><strong>Neovim:</strong> 0.5+</li>
+                <li><strong>Terminal:</strong> Any terminal with true color support (iTerm2, Alacritty, Kitty, WezTerm, Windows Terminal, etc.)</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadVimTheme() {
+            // Create a link to download the vim colorscheme file
+            const a = document.createElement('a');
+            a.href = 'vim-electric-dreams/colors/electric_dreams.vim';
+            a.download = 'electric_dreams.vim';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>

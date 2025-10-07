@@ -1,0 +1,45 @@
+# Electric Dreams tmux theme
+# Alternative format for direct sourcing
+
+# Color palette
+thm_bg="#0a0a0f"
+thm_bg_medium="#151520"
+thm_fg="#e0e0e0"
+thm_cyan="#00d9ff"
+thm_magenta="#ff006e"
+thm_purple="#9c27b0"
+thm_pink="#e91e63"
+thm_turquoise="#1de9b6"
+thm_gray="#4a4a6a"
+
+# Status bar
+set -g status-style "bg=$thm_bg_medium,fg=$thm_fg"
+set -g status-left-length 100
+set -g status-right-length 100
+
+# Left: Session
+set -g status-left "#[bg=$thm_cyan,fg=$thm_bg,bold] #S #[bg=$thm_bg_medium,fg=$thm_cyan]"
+
+# Right: Date & Time
+set -g status-right "#[fg=$thm_purple]#[bg=$thm_bg_medium,fg=$thm_purple] %Y-%m-%d #[fg=$thm_cyan]#[bg=$thm_bg_medium,fg=$thm_cyan,bold] %H:%M #[bg=$thm_cyan,fg=$thm_bg,bold] #H "
+
+# Windows
+setw -g window-status-style "bg=$thm_bg_medium,fg=#a0a0b0"
+setw -g window-status-format " #I:#W#F "
+setw -g window-status-current-style "bg=$thm_magenta,fg=$thm_bg,bold"
+setw -g window-status-current-format " #I:#W#F "
+
+# Pane borders
+set -g pane-border-style "fg=$thm_gray"
+set -g pane-active-border-style "fg=$thm_cyan"
+
+# Messages
+set -g message-style "bg=#1a1a2e,fg=$thm_cyan,bold"
+set -g message-command-style "bg=#1a1a2e,fg=$thm_magenta,bold"
+
+# Copy mode
+setw -g mode-style "bg=$thm_magenta,fg=$thm_bg,bold"
+
+# Clock
+setw -g clock-mode-colour "$thm_cyan"
+setw -g clock-mode-style 24

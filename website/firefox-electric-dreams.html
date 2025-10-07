@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Firefox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .browser-preview {
+            background: #151520;
+            border: 2px solid #00D9FF;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .browser-toolbar {
+            background: #0A0A0F;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        .browser-button {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: #1A1A2E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D0D0E0;
+            font-size: 0.8rem;
+        }
+
+        .browser-address {
+            flex: 1;
+            background: #151520;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid #4A4A6A;
+            color: #D0D0E0;
+            font-size: 0.85rem;
+        }
+
+        .browser-address.focused {
+            border-color: #00D9FF;
+            box-shadow: 0 0 0 1px #00D9FF;
+        }
+
+        .browser-tabs {
+            background: #0A0A0F;
+            display: flex;
+            gap: 2px;
+            padding: 0.5rem 0.5rem 0 0.5rem;
+        }
+
+        .browser-tab {
+            background: #0A0A0F;
+            padding: 0.5rem 1rem;
+            border-radius: 4px 4px 0 0;
+            color: #4A4A6A;
+            font-size: 0.85rem;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .browser-tab.active {
+            color: #D0D0E0;
+            border-bottom-color: #00D9FF;
+        }
+
+        .browser-content {
+            background: #1A1A2E;
+            padding: 2rem;
+            min-height: 150px;
+            color: #D0D0E0;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #00D9FF;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #00D9FF;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        th {
+            color: #00D9FF;
+            background: #151520;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #151520;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            border: 1px solid #4A4A6A;
+        }
+
+        .install-steps {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            margin: 2rem 0;
+        }
+
+        .install-step {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .step-number {
+            background: #00D9FF;
+            color: #0A0A0F;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .download-btn.amo {
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+            color: #fff;
+        }
+
+        .download-btn.amo:hover {
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+
+        .tip-box {
+            background: #1A1A2E;
+            border-left: 4px solid #FF006E;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box strong {
+            color: #FF006E;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for Firefox</h1>
+            <p class="subtitle">Neon browser theme with deep black backgrounds</p>
+        </header>
+
+        <section>
+            <h2>Preview</h2>
+            <div class="browser-preview">
+                <div class="browser-tabs">
+                    <div class="browser-tab">GitHub</div>
+                    <div class="browser-tab active">Electric Dreams</div>
+                    <div class="browser-tab">Documentation</div>
+                </div>
+                <div class="browser-toolbar">
+                    <div class="browser-button">←</div>
+                    <div class="browser-button">→</div>
+                    <div class="browser-button">↻</div>
+                    <div class="browser-address focused">https://electric-dreams-theme.com</div>
+                    <div class="browser-button">☆</div>
+                </div>
+                <div class="browser-content">
+                    <h3 style="color: #00D9FF; margin-bottom: 1rem;">Welcome to Electric Dreams</h3>
+                    <p>Experience neon aesthetics in your browser</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Dark & Neon</div>
+                    <p>Deep black backgrounds with electric cyan accents</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Cyan Tab Indicators</div>
+                    <p>Active tabs highlighted with neon cyan line</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">High Contrast</div>
+                    <p>Excellent readability with bold color choices</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-title">Complete Coverage</div>
+                    <p>All UI elements themed including menus and popups</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <div class="install-steps">
+                <h3 style="margin-top: 0;">Quick Install</h3>
+                <div class="install-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Visit Firefox Add-ons</strong><br>
+                        Navigate to the Electric Dreams theme page (link coming soon)
+                    </div>
+                </div>
+                <div class="install-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Click "Add to Firefox"</strong><br>
+                        The theme will download automatically
+                    </div>
+                </div>
+                <div class="install-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Confirm Installation</strong><br>
+                        Theme applies immediately - enjoy!
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>⚠️ Note:</strong> Theme submission to Firefox Add-ons is pending. For now, use manual installation below.
+            </div>
+
+            <h3>Manual Installation (For Testing)</h3>
+            <pre><code># Navigate to about:debugging in Firefox
+# Click "This Firefox"
+# Click "Load Temporary Add-on"
+# Select the manifest.json file from the theme folder</code></pre>
+
+            <p><strong>Note:</strong> Temporary installations are removed when Firefox closes.</p>
+        </section>
+
+        <section>
+            <h2>Color Palette</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Color</th>
+                        <th>Hex</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Toolbar Background</td>
+                        <td><span class="color-swatch" style="background: #0A0A0F;"></span>Pure Black</td>
+                        <td><code>#0A0A0F</code></td>
+                    </tr>
+                    <tr>
+                        <td>Toolbar Text</td>
+                        <td><span class="color-swatch" style="background: #D0D0E0;"></span>Light Lavender</td>
+                        <td><code>#D0D0E0</code></td>
+                    </tr>
+                    <tr>
+                        <td>Active Tab Indicator</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Inactive Tab Text</td>
+                        <td><span class="color-swatch" style="background: #4A4A6A;"></span>Cool Gray</td>
+                        <td><code>#4A4A6A</code></td>
+                    </tr>
+                    <tr>
+                        <td>Address Bar</td>
+                        <td><span class="color-swatch" style="background: #151520;"></span>Dark Background</td>
+                        <td><code>#151520</code></td>
+                    </tr>
+                    <tr>
+                        <td>Focus Border</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Popup Highlight</td>
+                        <td><span class="color-swatch" style="background: #00D9FF; opacity: 0.3;"></span>Cyan (30%)</td>
+                        <td><code>#00D9FF33</code></td>
+                    </tr>
+                    <tr>
+                        <td>Button Hover</td>
+                        <td><span class="color-swatch" style="background: #1A1A2E;"></span>Dark Navy</td>
+                        <td><code>#1A1A2E</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Advanced Customization</h2>
+            <p>Further customize Firefox with <code>userChrome.css</code> for advanced theming.</p>
+
+            <h3>Enable userChrome.css</h3>
+            <div class="install-step" style="margin-top: 1rem;">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    Navigate to <code>about:config</code> in Firefox
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    Search for <code>toolkit.legacyUserProfileCustomizations.stylesheets</code>
+                </div>
+            </div>
+            <div class="install-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    Set to <code>true</code> and restart Firefox
+                </div>
+            </div>
+
+            <h3>Example: Rounded Tabs</h3>
+            <pre><code>/* userChrome.css */
+.tab-background {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.tab-line {
+  height: 3px !important;
+}</code></pre>
+        </section>
+
+        <section>
+            <h2>Companion Extensions</h2>
+            <p>Enhance your Electric Dreams experience:</p>
+            <ul>
+                <li><strong>Dark Reader</strong> - Force dark mode on all websites</li>
+                <li><strong>Stylus</strong> - Custom CSS for websites</li>
+                <li><strong>Tree Style Tab</strong> - Vertical tabs with theming</li>
+                <li><strong>Simple Tab Groups</strong> - Organize tabs with colors</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <div class="download-section">
+                <button class="download-btn amo" onclick="alert('Theme will be available on Firefox Add-ons soon!')">Add to Firefox</button>
+                <button class="download-btn" onclick="downloadTheme()">Download for Manual Install</button>
+                <a href="firefox-electric-dreams/README.md" class="download-btn" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Browser Support</h2>
+            <ul>
+                <li><strong>Firefox:</strong> 60.0 or later</li>
+                <li><strong>Firefox ESR:</strong> 60.0 or later</li>
+                <li><strong>Firefox Developer Edition:</strong> All versions</li>
+                <li><strong>Firefox Nightly:</strong> All versions</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            alert('To manually install:\n\n1. Download the theme folder\n2. Open Firefox → about:debugging\n3. Click "This Firefox"\n4. Click "Load Temporary Add-on"\n5. Select manifest.json from the theme folder');
+        }
+    </script>
+</body>
+</html>

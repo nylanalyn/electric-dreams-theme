@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Kitty Terminal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #00D9FF;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #00D9FF;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .terminal-preview {
+            background: #0A0A0F;
+            border: 2px solid #00D9FF;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #FF1744; }
+        .dot-yellow { background: #FF006E; }
+        .dot-green { background: #1DE9B6; }
+
+        .terminal-content {
+            font-size: 0.9rem;
+        }
+
+        .terminal-content .prompt {
+            color: #00D9FF;
+        }
+
+        .terminal-content .command {
+            color: #FF006E;
+        }
+
+        .terminal-content .output {
+            color: #D0D0E0;
+        }
+
+        .terminal-content .success {
+            color: #1DE9B6;
+        }
+
+        .terminal-content .error {
+            color: #FF1744;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .color-box {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            border: 2px solid #4A4A6A;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .color-box:hover {
+            transform: scale(1.1);
+            border-color: #00D9FF;
+            z-index: 10;
+        }
+
+        .color-box::after {
+            content: attr(data-color);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            color: #00D9FF;
+        }
+
+        .color-box:hover::after {
+            opacity: 1;
+        }
+
+        .install-section {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            margin: 2rem 0;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .download-btn.alt {
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+            color: #fff;
+        }
+
+        .download-btn.alt:hover {
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        th {
+            color: #00D9FF;
+            background: #151520;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #151520;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            border: 1px solid #4A4A6A;
+        }
+
+        .tip-box {
+            background: #1A1A2E;
+            border-left: 4px solid #1DE9B6;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip-box strong {
+            color: #1DE9B6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for Kitty</h1>
+            <p class="subtitle">Neon terminal theme with true color support</p>
+        </header>
+
+        <section>
+            <h2>Preview</h2>
+            <div class="terminal-preview">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <span style="color: #4A4A6A; margin-left: 1rem; font-size: 0.9rem;">kitty @ Electric Dreams</span>
+                </div>
+                <div class="terminal-content">
+                    <div><span class="prompt">❯</span> <span class="command">neofetch</span></div>
+                    <div class="output">OS: Arch Linux x86_64</div>
+                    <div class="output">Shell: zsh 5.9</div>
+                    <div class="output">Theme: <span class="success">Electric Dreams</span></div>
+                    <div style="margin-top: 1rem;"><span class="prompt">❯</span> <span class="command">ls -la</span></div>
+                    <div class="output">drwxr-xr-x  <span style="color: #00D9FF;">projects/</span></div>
+                    <div class="output">-rw-r--r--  <span style="color: #D0D0E0;">config.conf</span></div>
+                    <div class="output">-rwxr-xr-x  <span style="color: #1DE9B6;">script.sh</span></div>
+                    <div style="margin-top: 1rem;"><span class="prompt">❯</span> <span style="color: #4A4A6A;">█</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">True Colors</div>
+                    <p>Full 24-bit color support with neon palette</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Electric Cyan</div>
+                    <p>Cursor, tabs, and borders in vibrant cyan</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <div class="feature-title">High Contrast</div>
+                    <p>Deep black background with neon accents</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔤</div>
+                    <div class="feature-title">Optimized Typography</div>
+                    <p>Perfect with JetBrainsMono Nerd Font</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Color Palette</h2>
+            <h3>16 ANSI Colors</h3>
+            <div class="color-palette">
+                <div class="color-box" data-color="Black" style="background: #0A0A0F;" onclick="copyColor('#0A0A0F')"></div>
+                <div class="color-box" data-color="Red" style="background: #FF1744;" onclick="copyColor('#FF1744')"></div>
+                <div class="color-box" data-color="Green" style="background: #1DE9B6;" onclick="copyColor('#1DE9B6')"></div>
+                <div class="color-box" data-color="Yellow" style="background: #FF006E;" onclick="copyColor('#FF006E')"></div>
+                <div class="color-box" data-color="Blue" style="background: #9C27B0;" onclick="copyColor('#9C27B0')"></div>
+                <div class="color-box" data-color="Magenta" style="background: #FF006E;" onclick="copyColor('#FF006E')"></div>
+                <div class="color-box" data-color="Cyan" style="background: #00D9FF;" onclick="copyColor('#00D9FF')"></div>
+                <div class="color-box" data-color="White" style="background: #D0D0E0;" onclick="copyColor('#D0D0E0')"></div>
+                <div class="color-box" data-color="Br.Black" style="background: #4A4A6A;" onclick="copyColor('#4A4A6A')"></div>
+                <div class="color-box" data-color="Br.Red" style="background: #C41E3A;" onclick="copyColor('#C41E3A')"></div>
+                <div class="color-box" data-color="Br.Green" style="background: #00BFA5;" onclick="copyColor('#00BFA5')"></div>
+                <div class="color-box" data-color="Br.Yellow" style="background: #E91E63;" onclick="copyColor('#E91E63')"></div>
+                <div class="color-box" data-color="Br.Blue" style="background: #BB86FC;" onclick="copyColor('#BB86FC')"></div>
+                <div class="color-box" data-color="Br.Magenta" style="background: #D81B60;" onclick="copyColor('#D81B60')"></div>
+                <div class="color-box" data-color="Br.Cyan" style="background: #1DE9B6;" onclick="copyColor('#1DE9B6')"></div>
+                <div class="color-box" data-color="Br.White" style="background: #FFFFFF;" onclick="copyColor('#FFFFFF')"></div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">UI Colors</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Color</th>
+                        <th>Hex</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Background</td>
+                        <td><span class="color-swatch" style="background: #0A0A0F;"></span>Pure Black</td>
+                        <td><code>#0A0A0F</code></td>
+                    </tr>
+                    <tr>
+                        <td>Foreground</td>
+                        <td><span class="color-swatch" style="background: #D0D0E0;"></span>Light Lavender</td>
+                        <td><code>#D0D0E0</code></td>
+                    </tr>
+                    <tr>
+                        <td>Cursor</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Selection</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Active Border</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Inactive Border</td>
+                        <td><span class="color-swatch" style="background: #4A4A6A;"></span>Cool Gray</td>
+                        <td><code>#4A4A6A</code></td>
+                    </tr>
+                    <tr>
+                        <td>Active Tab</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>URL</td>
+                        <td><span class="color-swatch" style="background: #00D9FF;"></span>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <div class="install-section">
+                <h3>Quick Install</h3>
+                <pre><code># Create themes directory
+mkdir -p ~/.config/kitty/themes
+
+# Download the theme
+curl -o ~/.config/kitty/themes/electric-dreams.conf \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/kitty/electric-dreams.conf
+
+# Add to your kitty.conf
+echo "include themes/electric-dreams.conf" >> ~/.config/kitty/kitty.conf
+
+# Reload Kitty (Ctrl+Shift+F5)
+</code></pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Tip:</strong> Press <code>Ctrl+Shift+F5</code> in Kitty to reload the configuration without restarting.
+            </div>
+        </section>
+
+        <section>
+            <h2>Recommended Settings</h2>
+            <p>Add these to your <code>~/.config/kitty/kitty.conf</code> for the complete experience:</p>
+
+            <h3>Font</h3>
+            <pre><code>font_family      JetBrainsMono Nerd Font
+bold_font        JetBrainsMono Nerd Font Bold
+italic_font      JetBrainsMono Nerd Font Italic
+font_size        11.0</code></pre>
+
+            <h3>Window Style</h3>
+            <pre><code>window_padding_width  8
+window_border_width   2.0
+draw_minimal_borders  yes
+
+# Optional: transparency and blur
+background_opacity    0.95
+background_blur       32</code></pre>
+
+            <h3>Tab Bar</h3>
+            <pre><code>tab_bar_edge          top
+tab_bar_style         powerline
+tab_powerline_style   slanted</code></pre>
+
+            <h3>Cursor</h3>
+            <pre><code>cursor_shape          beam
+cursor_beam_thickness 2.0
+cursor_blink_interval 0</code></pre>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+
+            <h3>Adjust Opacity</h3>
+            <pre><code># More transparent
+background_opacity 0.85
+
+# Fully opaque
+background_opacity 1.0</code></pre>
+
+            <h3>Change Cursor Style</h3>
+            <pre><code># Block cursor
+cursor_shape block
+
+# Underline cursor
+cursor_shape underline</code></pre>
+
+            <h3>Move Tab Bar</h3>
+            <pre><code># Bottom tab bar
+tab_bar_edge bottom
+
+# Hidden tab bar
+tab_bar_style hidden</code></pre>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadFile('electric-dreams.conf')">Download Theme</button>
+                <a href="kitty-electric-dreams/README.md" class="download-btn alt" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="padding: 0.5rem 0;"><strong>Kitty:</strong> 0.26.0 or later (0.30.0+ recommended)</li>
+                <li style="padding: 0.5rem 0;"><strong>Font:</strong> JetBrainsMono Nerd Font (optional but recommended)</li>
+                <li style="padding: 0.5rem 0;"><strong>Display:</strong> True color (24-bit) support</li>
+                <li style="padding: 0.5rem 0;"><strong>OS:</strong> Linux, macOS, BSD</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function copyColor(hex) {
+            navigator.clipboard.writeText(hex).then(() => {
+                alert(`${hex} copied to clipboard!`);
+            });
+        }
+
+        function downloadFile(filename) {
+            const a = document.createElement('a');
+            a.href = `kitty-electric-dreams/${filename}`;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>

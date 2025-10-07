@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Waybar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #FF006E;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #00D9FF;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .color-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #151520;
+            border-radius: 6px;
+            border: 1px solid #4A4A6A;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 2px solid #4A4A6A;
+            flex-shrink: 0;
+        }
+
+        .color-info {
+            flex: 1;
+        }
+
+        .color-name {
+            font-size: 0.85rem;
+            color: #E8E8F0;
+            font-weight: bold;
+        }
+
+        .color-code {
+            font-size: 0.75rem;
+            color: #1DE9B6;
+            font-family: monospace;
+        }
+
+        .preview-section {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #FF006E;
+            margin: 2rem 0;
+        }
+
+        .waybar-demo {
+            background: rgba(20, 20, 25, 0.95);
+            border-bottom: 2px solid #00D9FF;
+            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .waybar-left, .waybar-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .waybar-module {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .waybar-module.workspace {
+            color: #00D9FF;
+        }
+
+        .waybar-module.workspace.active {
+            color: #FF006E;
+            background: rgba(255, 0, 110, 0.2);
+            border-bottom: 2px solid #FF006E;
+        }
+
+        .waybar-module.clock {
+            color: #00D9FF;
+            background: rgba(0, 217, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .waybar-module.cpu {
+            color: #9C27B0;
+            background: rgba(156, 39, 176, 0.1);
+        }
+
+        .waybar-module.memory {
+            color: #E91E63;
+            background: rgba(233, 30, 99, 0.1);
+        }
+
+        .waybar-module.network {
+            color: #BB86FC;
+            background: rgba(187, 134, 252, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for Waybar</h1>
+            <p class="subtitle">Neon status bar theme for Wayland compositors</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌈</div>
+                    <div class="feature-title">Color-Coded Modules</div>
+                    <p>Each system module has its own vibrant color with subtle backgrounds</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-title">Glowing Effects</div>
+                    <p>Hover animations with neon glow shadows on interactive elements</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Clean Design</div>
+                    <p>Modern rounded corners and consistent spacing throughout</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <div class="feature-title">Active Indicators</div>
+                    <p>Magenta workspace highlights with cyan-to-pink transitions</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Preview</h2>
+            <div class="preview-section">
+                <h3 style="color: #00D9FF; margin-top: 0;">Waybar Demo</h3>
+                <div class="waybar-demo">
+                    <div class="waybar-left">
+                        <span class="waybar-module workspace">1</span>
+                        <span class="waybar-module workspace active">2</span>
+                        <span class="waybar-module workspace">3</span>
+                        <span class="waybar-module workspace">4</span>
+                        <span style="color: #E0E0E0; margin-left: 0.5rem;">Terminal - nvim</span>
+                    </div>
+                    <div class="waybar-right">
+                        <span class="waybar-module cpu">CPU 24%</span>
+                        <span class="waybar-module memory">MEM 42%</span>
+                        <span class="waybar-module network">󰖩 Connected</span>
+                        <span class="waybar-module clock">14:23</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 1rem; color: #A0A0B0;">
+                    The bar features a translucent dark background with cyan accent border and per-module color coding
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Color Palette</h2>
+            <div class="color-demo">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #00D9FF; border-color: #00D9FF;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Electric Cyan</div>
+                        <div class="color-code">#00D9FF</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FF006E; border-color: #FF006E;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Hot Magenta</div>
+                        <div class="color-code">#FF006E</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #9C27B0; border-color: #9C27B0;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Purple</div>
+                        <div class="color-code">#9C27B0</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #E91E63; border-color: #E91E63;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Pink</div>
+                        <div class="color-code">#E91E63</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #1DE9B6; border-color: #1DE9B6;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Turquoise</div>
+                        <div class="color-code">#1DE9B6</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #BB86FC; border-color: #BB86FC;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Light Purple</div>
+                        <div class="color-code">#BB86FC</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <h3>Quick Install</h3>
+            <pre><code># Download the theme
+mkdir -p ~/.config/waybar/themes
+curl -o ~/.config/waybar/themes/electric-dreams.css \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/waybar/style.css
+
+# Backup your current style
+cp ~/.config/waybar/style.css ~/.config/waybar/style.css.backup
+
+# Apply the theme
+cp ~/.config/waybar/themes/electric-dreams.css ~/.config/waybar/style.css
+
+# Restart waybar
+killall waybar && waybar &</code></pre>
+
+            <h3>Alternative: Use with @import</h3>
+            <p>Keep your existing styles and import Electric Dreams:</p>
+            <pre><code># Download to themes directory
+mkdir -p ~/.config/waybar/themes
+curl -o ~/.config/waybar/themes/electric-dreams.css \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/waybar/style.css</code></pre>
+
+            <p>Add this line to the top of your <code>~/.config/waybar/style.css</code>:</p>
+            <pre><code>@import "themes/electric-dreams.css";</code></pre>
+
+            <h3>NixOS / Home Manager</h3>
+            <p>Add to your Home Manager configuration:</p>
+            <pre><code>programs.waybar = {
+  enable = true;
+  style = builtins.readFile ./waybar-electric-dreams/style.css;
+};</code></pre>
+
+            <h3>What's Included</h3>
+            <ul class="feature-list">
+                <li>Translucent dark background with cyan border</li>
+                <li>Workspace buttons with active/hover states</li>
+                <li>Color-coded system modules (CPU, memory, temperature, etc.)</li>
+                <li>Styled clock with cyan accent</li>
+                <li>Network and audio indicators</li>
+                <li>System tray styling</li>
+                <li>Hover effects with glowing shadows</li>
+                <li>Rounded corners and modern spacing</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <p>Tweak these common settings by editing the CSS file:</p>
+
+            <h3>Adjust Transparency</h3>
+            <pre><code>window#waybar {
+    background-color: rgba(20, 20, 25, 0.95);  /* Change 0.95 to desired opacity */
+}</code></pre>
+
+            <h3>Change Module Colors</h3>
+            <pre><code>#cpu {
+    color: #9c27b0;  /* Change to any color you prefer */
+    background-color: rgba(156, 39, 176, 0.1);
+}</code></pre>
+
+            <h3>Modify Border</h3>
+            <pre><code>window#waybar {
+    border-bottom: 2px solid #00d9ff;  /* Change color or size */
+}</code></pre>
+
+            <h3>Font Size</h3>
+            <pre><code>* {
+    font-size: 13px;  /* Adjust to your preference */
+}</code></pre>
+        </section>
+
+        <section>
+            <h2>Module Support</h2>
+            <p>Electric Dreams includes styling for these common Waybar modules:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title" style="color: #00D9FF;">Core</div>
+                    <ul class="feature-list" style="font-size: 0.85rem;">
+                        <li>Workspaces</li>
+                        <li>Window title</li>
+                        <li>Clock</li>
+                        <li>Tray</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title" style="color: #FF006E;">System</div>
+                    <ul class="feature-list" style="font-size: 0.85rem;">
+                        <li>CPU usage</li>
+                        <li>Memory</li>
+                        <li>Temperature</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title" style="color: #1DE9B6;">Hardware</div>
+                    <ul class="feature-list" style="font-size: 0.85rem;">
+                        <li>PulseAudio</li>
+                        <li>Network</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 1rem;">Other modules will inherit the base styling and fit in seamlessly.</p>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadFile('style.css')">Download Theme</button>
+                <a href="waybar-electric-dreams/" class="download-btn">View Files</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul class="feature-list">
+                <li><strong>Waybar</strong> v0.9.0 or later</li>
+                <li><strong>JetBrainsMono Nerd Font</strong> (or substitute in CSS)</li>
+                <li>Wayland compositor (Hyprland, Sway, etc.)</li>
+                <li>True color terminal support</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+
+            <h3>Waybar not updating?</h3>
+            <pre><code># Restart waybar
+killall waybar && waybar &
+
+# Or reload config (if supported)
+pkill -SIGUSR2 waybar</code></pre>
+
+            <h3>Font not displaying correctly?</h3>
+            <pre><code># Install JetBrains Mono Nerd Font
+# Arch
+sudo pacman -S ttf-jetbrains-mono-nerd
+
+# Or edit style.css to use your preferred font
+font-family: 'Your Font Name', monospace;</code></pre>
+
+            <h3>Colors look wrong?</h3>
+            <p>Make sure your compositor supports transparency and your waybar config doesn't override the theme.</p>
+        </section>
+    </div>
+
+    <script>
+        function downloadFile(filename) {
+            const a = document.createElement('a');
+            a.href = `waybar-electric-dreams/${filename}`;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>

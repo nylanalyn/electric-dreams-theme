@@ -1,0 +1,64 @@
+{
+  "manifest_version": 2,
+  "name": "Electric Dreams",
+  "version": "1.0.0",
+  "description": "A bold neon theme featuring electric cyan, hot magenta, and vibrant purple on deep black backgrounds",
+  "author": "nullveil",
+  "homepage_url": "https://github.com/nullveil/firefox-electric-dreams",
+
+  "theme": {
+    "colors": {
+      "toolbar": "#0A0A0F",
+      "toolbar_text": "#D0D0E0",
+      "frame": "#0A0A0F",
+      "tab_background_text": "#D0D0E0",
+      "toolbar_field": "#151520",
+      "toolbar_field_text": "#D0D0E0",
+      "toolbar_field_border": "#4A4A6A",
+      "toolbar_field_focus": "#151520",
+      "toolbar_field_text_focus": "#D0D0E0",
+      "toolbar_field_border_focus": "#00D9FF",
+      "tab_line": "#00D9FF",
+      "tab_loading": "#00D9FF",
+      "tab_selected": "#0A0A0F",
+      "tab_text": "#4A4A6A",
+      "tab_background_separator": "#4A4A6A",
+      "bookmark_text": "#D0D0E0",
+      "button_background_hover": "#1A1A2E",
+      "button_background_active": "#252535",
+      "popup": "#151520",
+      "popup_text": "#D0D0E0",
+      "popup_border": "#4A4A6A",
+      "popup_highlight": "#00D9FF33",
+      "popup_highlight_text": "#00D9FF",
+      "ntp_background": "#0A0A0F",
+      "ntp_text": "#D0D0E0",
+      "sidebar": "#0A0A0F",
+      "sidebar_text": "#D0D0E0",
+      "sidebar_border": "#4A4A6A",
+      "sidebar_highlight": "#00D9FF33",
+      "sidebar_highlight_text": "#00D9FF"
+    },
+
+    "images": {
+      "theme_frame": ""
+    },
+
+    "properties": {
+      "color_scheme": "dark",
+      "content_color_scheme": "dark"
+    }
+  },
+
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "electric-dreams@nullveil",
+      "strict_min_version": "60.0"
+    }
+  }
+}

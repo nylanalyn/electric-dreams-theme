@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Hyprland & Hyprlock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: -2px;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: #151520;
+            border: 2px solid #4A4A6A;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #D0D0E0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+        }
+
+        .tab:hover {
+            border-color: #00D9FF;
+            color: #00D9FF;
+        }
+
+        .tab.active {
+            background: #1A1A2E;
+            border-color: #00D9FF;
+            color: #00D9FF;
+        }
+
+        .tab-content {
+            display: none;
+            background: #151520;
+            padding: 2rem;
+            border-radius: 0 8px 8px 8px;
+            border: 2px solid #4A4A6A;
+        }
+
+        .tab-content.active {
+            display: block;
+            border-color: #00D9FF;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #FF006E;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #00D9FF;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .download-btn.alt {
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+            color: #fff;
+        }
+
+        .download-btn.alt:hover {
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+
+        .color-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #151520;
+            border-radius: 6px;
+            border: 1px solid #4A4A6A;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 2px solid #4A4A6A;
+            flex-shrink: 0;
+        }
+
+        .color-info {
+            flex: 1;
+        }
+
+        .color-name {
+            font-size: 0.85rem;
+            color: #E8E8F0;
+            font-weight: bold;
+        }
+
+        .color-code {
+            font-size: 0.75rem;
+            color: #1DE9B6;
+            font-family: monospace;
+        }
+
+        .preview-section {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #FF006E;
+            margin: 2rem 0;
+        }
+
+        .window-demo {
+            background: #0A0A0F;
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .window-demo.active {
+            border-color: #00D9FF;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .window-demo.inactive {
+            border-color: #4A4A6A;
+        }
+
+        .window-title {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #D0D0E0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for Hyprland</h1>
+            <p class="subtitle">Neon window manager theme with matching lock screen</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Neon Aesthetics</div>
+                    <p>Electric cyan and magenta borders with glowing shadow effects</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-title">Smooth Animations</div>
+                    <p>Custom bezier curves with overshot effects for modern feel</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌫️</div>
+                    <div class="feature-title">Blur Effects</div>
+                    <p>Optimized blur for bars, notifications, and floating windows</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Matching Lock Screen</div>
+                    <p>Hyprlock theme with neon rings and animated time display</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Preview</h2>
+            <div class="preview-section">
+                <h3 style="color: #00D9FF; margin-top: 0;">Window Borders</h3>
+                <div class="window-demo active">
+                    <div class="window-title">Active Window (Electric Cyan)</div>
+                    <p style="font-size: 0.85rem;">Border: rgba(00d9ffee) with gradient and glow</p>
+                </div>
+                <div class="window-demo inactive">
+                    <div class="window-title">Inactive Window (Cool Gray)</div>
+                    <p style="font-size: 0.85rem;">Border: rgba(4a4a6ab3) - subtle and muted</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Color Palette</h2>
+            <div class="color-demo">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #00D9FF; border-color: #00D9FF;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Electric Cyan</div>
+                        <div class="color-code">rgba(00d9ffee)</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FF006E; border-color: #FF006E;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Hot Magenta</div>
+                        <div class="color-code">rgba(ff006eee)</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #1DE9B6; border-color: #1DE9B6;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Turquoise</div>
+                        <div class="color-code">rgba(1de9b6ff)</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FF1744; border-color: #FF1744;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Vivid Crimson</div>
+                        <div class="color-code">rgba(ff1744ff)</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #4A4A6A; border-color: #4A4A6A;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Cool Gray</div>
+                        <div class="color-code">rgba(4a4a6ab3)</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #0A0A0F; border-color: #0A0A0F;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Pure Black</div>
+                        <div class="color-code">rgba(0a0a0fff)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('hyprland')">Hyprland</div>
+                <div class="tab" onclick="showTab('hyprlock')">Hyprlock</div>
+            </div>
+
+            <div id="hyprland" class="tab-content active">
+                <h3>Installing Hyprland Theme</h3>
+
+                <p><strong>Option 1: Source the theme (Recommended)</strong></p>
+                <pre><code># Create themes directory
+mkdir -p ~/.config/hypr/themes
+
+# Download the theme
+cd ~/.config/hypr/themes
+curl -O https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/hyprland/hyprland.conf
+
+# Rename it
+mv hyprland.conf electric-dreams.conf</code></pre>
+
+                <p>Then add this to your <code>~/.config/hypr/hyprland.conf</code>:</p>
+                <pre><code>source = ~/.config/hypr/themes/electric-dreams.conf</code></pre>
+
+                <p><strong>Option 2: Direct integration</strong></p>
+                <p>Copy the contents of <code>hyprland.conf</code> directly into your main Hyprland config.</p>
+
+                <h3>What's Included</h3>
+                <ul class="feature-list">
+                    <li>Border colors with electric cyan active border</li>
+                    <li>Gaps configuration (5px inner, 10px outer)</li>
+                    <li>Shadow effects with magenta glow</li>
+                    <li>Blur settings optimized for performance</li>
+                    <li>Custom animations with overshot effect</li>
+                    <li>Group/tab colors for tiling</li>
+                    <li>Layer rules for bars and notifications</li>
+                </ul>
+            </div>
+
+            <div id="hyprlock" class="tab-content">
+                <h3>Installing Hyprlock Theme</h3>
+
+                <p><strong>Step 1: Download the configuration</strong></p>
+                <pre><code># Direct replacement
+curl -o ~/.config/hypr/hyprlock.conf \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/hyprland/hyprlock.conf</code></pre>
+
+                <p>Or keep it separate:</p>
+                <pre><code># As a theme file
+mkdir -p ~/.config/hypr/themes
+curl -o ~/.config/hypr/themes/electric-dreams-lock.conf \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/hyprland/hyprlock.conf
+
+# Then source it in your hyprlock.conf
+echo "source = ~/.config/hypr/themes/electric-dreams-lock.conf" >> ~/.config/hypr/hyprlock.conf</code></pre>
+
+                <p><strong>Step 2: Install required font</strong></p>
+                <pre><code># Arch/Manjaro
+sudo pacman -S ttf-jetbrains-mono-nerd
+
+# Ubuntu/Debian
+sudo apt install fonts-jetbrains-mono</code></pre>
+
+                <p><strong>Step 3: Install jq (for keyboard layout display)</strong></p>
+                <pre><code># Arch/Manjaro
+sudo pacman -S jq
+
+# Ubuntu/Debian
+sudo apt install jq</code></pre>
+
+                <h3>Lock Screen Features</h3>
+                <ul class="feature-list">
+                    <li>Large cyan time display with glow effect</li>
+                    <li>Magenta date label</li>
+                    <li>Turquoise user greeting</li>
+                    <li>Electric cyan input field border</li>
+                    <li>Dual neon rings around input</li>
+                    <li>Battery percentage indicator</li>
+                    <li>Keyboard layout display</li>
+                    <li>Caps lock warning in magenta</li>
+                    <li>Screenshot background with blur</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <p>Adjust these common settings to match your preferences:</p>
+
+            <h3>Border Size & Gaps</h3>
+            <pre><code>general {
+    gaps_in = 5       # Inner gaps (default: 5)
+    gaps_out = 10     # Outer gaps (default: 10)
+    border_size = 2   # Border width (default: 2)
+}</code></pre>
+
+            <h3>Animation Speed</h3>
+            <pre><code># Make animations faster (lower duration)
+animation = windows, 1, 3, overshot, slide
+
+# Make animations slower (higher duration)
+animation = windows, 1, 7, overshot, slide</code></pre>
+
+            <h3>Custom App Border Colors</h3>
+            <pre><code># Add these to hyprland.conf
+windowrulev2 = bordercolor rgba(1de9b6ee), class:(firefox)
+windowrulev2 = bordercolor rgba(ff006eee), class:(kitty)
+windowrulev2 = bordercolor rgba(9c27b0ee), class:(discord)</code></pre>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadFile('hyprland.conf')">Download Hyprland Theme</button>
+                <button class="download-btn alt" onclick="downloadFile('hyprlock.conf')">Download Hyprlock Theme</button>
+                <a href="hyprland-electric-dreams/README.md" class="download-btn" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul class="feature-list">
+                <li><strong>Hyprland</strong> v0.34.0 or later</li>
+                <li><strong>Hyprlock</strong> v0.3.0 or later (for lock screen)</li>
+                <li><strong>JetBrainsMono Nerd Font</strong> (for best appearance)</li>
+                <li><strong>jq</strong> (for Hyprlock keyboard layout indicator)</li>
+                <li>Terminal with true color support</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function downloadFile(filename) {
+            const a = document.createElement('a');
+            a.href = `hyprland-electric-dreams/${filename}`;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>

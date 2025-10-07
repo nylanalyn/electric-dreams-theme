@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams - Color Theme</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+            border-bottom: 2px solid #FF006E;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 0, 110, 0.7)); }
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #E8E8F0;
+            font-style: italic;
+        }
+
+        .description {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #151520;
+            border-radius: 8px;
+            border-left: 4px solid #00D9FF;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #E8E8F0;
+            border-bottom: 2px solid #00D9FF;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .color-card {
+            background: #151520;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s ease;
+        }
+
+        .color-card:hover {
+            border-color: #FF006E;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+        }
+
+        .color-swatch {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .color-swatch::after {
+            content: 'Click to copy';
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .color-swatch:hover::after {
+            opacity: 0.7;
+        }
+
+        .color-info {
+            padding: 1rem;
+        }
+
+        .color-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #E8E8F0;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            color: #00D9FF;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .color-usage {
+            font-size: 0.85rem;
+            color: #4A4A6A;
+            font-style: italic;
+        }
+
+        .downloads {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .download-btn.alt {
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+        }
+
+        .download-btn.alt:hover {
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .spec-card {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+        }
+
+        .spec-title {
+            color: #FF006E;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .spec-content {
+            color: #D0D0E0;
+        }
+
+        code {
+            background: #0A0A0F;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1DE9B6;
+            color: #0A0A0F;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .app-card {
+            background: #151520;
+            border-radius: 8px;
+            padding: 2rem;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .app-card:hover {
+            border-color: #00D9FF;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .app-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .app-name {
+            font-size: 1.5rem;
+            color: #00D9FF;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .app-description {
+            color: #D0D0E0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .app-install {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .install-code {
+            background: #0A0A0F;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+            border: 1px solid #4A4A6A;
+            width: 100%;
+            display: block;
+        }
+
+        .app-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #FF006E, #E91E63);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .app-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ELECTRIC DREAMS</h1>
+            <p class="tagline">Bold neon colors on deep black canvases</p>
+        </header>
+
+        <div class="description">
+            <p><strong>Aesthetic:</strong> Monochromatic figures with vivid accent pops. Deep blacks and dark navies create a dramatic base, while electric cyan, crimson red, hot magenta, and vibrant purple provide high-contrast accent colors.</p>
+        </div>
+
+        <section class="section">
+            <h2>Base Colors</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0A0A0F; color: #fff;" onclick="copyColor('#0A0A0F')">
+                        #0A0A0F
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Pure Black</div>
+                        <div class="color-hex">base00</div>
+                        <div class="color-usage">Main background</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #151520; color: #fff;" onclick="copyColor('#151520')">
+                        #151520
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Slightly Lighter Black</div>
+                        <div class="color-hex">base01</div>
+                        <div class="color-usage">Alt background</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1A1A2E; color: #fff;" onclick="copyColor('#1A1A2E')">
+                        #1A1A2E
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Dark Navy</div>
+                        <div class="color-hex">base02</div>
+                        <div class="color-usage">Floating elements</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #252535; color: #fff;" onclick="copyColor('#252535')">
+                        #252535
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Mid-Dark Navy</div>
+                        <div class="color-hex">base03</div>
+                        <div class="color-usage">Secondary elements</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #4A4A6A; color: #fff;" onclick="copyColor('#4A4A6A')">
+                        #4A4A6A
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Cool Purple-Gray</div>
+                        <div class="color-hex">base04</div>
+                        <div class="color-usage">Shadows, inactive elements</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #D0D0E0; color: #0A0A0F;" onclick="copyColor('#D0D0E0')">
+                        #D0D0E0
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Light Lavender-White</div>
+                        <div class="color-hex">base05</div>
+                        <div class="color-usage">Primary text</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #E8E8F0; color: #0A0A0F;" onclick="copyColor('#E8E8F0')">
+                        #E8E8F0
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Bright Lavender-White</div>
+                        <div class="color-hex">base06</div>
+                        <div class="color-usage">Highlights</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FFFFFF; color: #0A0A0F;" onclick="copyColor('#FFFFFF')">
+                        #FFFFFF
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Pure White</div>
+                        <div class="color-hex">base07</div>
+                        <div class="color-usage">Extreme highlights</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Accent Colors</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FF1744; color: #fff;" onclick="copyColor('#FF1744')">
+                        #FF1744
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Vivid Crimson</div>
+                        <div class="color-hex">red</div>
+                        <div class="color-usage">Errors, warnings</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #C41E3A; color: #fff;" onclick="copyColor('#C41E3A')">
+                        #C41E3A
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Red</div>
+                        <div class="color-hex">redDark</div>
+                        <div class="color-usage">Dark red variant</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FF006E; color: #fff;" onclick="copyColor('#FF006E')">
+                        #FF006E
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Hot Magenta</div>
+                        <div class="color-hex">magenta</div>
+                        <div class="color-usage">Primary accent, borders</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #D81B60; color: #fff;" onclick="copyColor('#D81B60')">
+                        #D81B60
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Magenta</div>
+                        <div class="color-hex">magentaDark</div>
+                        <div class="color-usage">Dark magenta variant</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #00D9FF; color: #0A0A0F;" onclick="copyColor('#00D9FF')">
+                        #00D9FF
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Electric Cyan</div>
+                        <div class="color-hex">cyan</div>
+                        <div class="color-usage">Active borders, links</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1DE9B6; color: #0A0A0F;" onclick="copyColor('#1DE9B6')">
+                        #1DE9B6
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Turquoise</div>
+                        <div class="color-hex">cyanBright</div>
+                        <div class="color-usage">Success states</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #00BFA5; color: #fff;" onclick="copyColor('#00BFA5')">
+                        #00BFA5
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Cyan</div>
+                        <div class="color-hex">cyanDark</div>
+                        <div class="color-usage">Dark cyan variant</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #9C27B0; color: #fff;" onclick="copyColor('#9C27B0')">
+                        #9C27B0
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Vibrant Purple</div>
+                        <div class="color-hex">purple</div>
+                        <div class="color-usage">Info states</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #7B1FA2; color: #fff;" onclick="copyColor('#7B1FA2')">
+                        #7B1FA2
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Purple</div>
+                        <div class="color-hex">purpleDark</div>
+                        <div class="color-usage">Dark purple variant</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #6B5B95; color: #fff;" onclick="copyColor('#6B5B95')">
+                        #6B5B95
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Mid Purple</div>
+                        <div class="color-hex">purpleMid</div>
+                        <div class="color-usage">UI elements</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #E91E63; color: #fff;" onclick="copyColor('#E91E63')">
+                        #E91E63
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Hot Pink</div>
+                        <div class="color-hex">pink</div>
+                        <div class="color-usage">Accent variant</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #BB86FC; color: #0A0A0F;" onclick="copyColor('#BB86FC')">
+                        #BB86FC
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Soft Violet</div>
+                        <div class="color-hex">violet</div>
+                        <div class="color-usage">Subtle accents</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Specifications</h2>
+            <div class="specs">
+                <div class="spec-card">
+                    <div class="spec-title">Typography</div>
+                    <div class="spec-content">
+                        <p><strong>Font:</strong> <code>JetBrainsMono Nerd Font</code></p>
+                        <p><strong>Sizes:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Small: 10px</li>
+                            <li>Normal: 11px</li>
+                            <li>Medium: 13px</li>
+                            <li>Large: 16px</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-title">Spacing</div>
+                    <div class="spec-content">
+                        <p><strong>Gaps In:</strong> 5px</p>
+                        <p><strong>Gaps Out:</strong> 10px</p>
+                        <p><strong>Border Size:</strong> 2px</p>
+                        <p><strong>Rounding:</strong> 8px</p>
+                    </div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-title">Status Colors</div>
+                    <div class="spec-content">
+                        <p><strong>Success:</strong> <code>#1DE9B6</code></p>
+                        <p><strong>Warning:</strong> <code>#FF006E</code></p>
+                        <p><strong>Error:</strong> <code>#FF1744</code></p>
+                        <p><strong>Info:</strong> <code>#9C27B0</code></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Ports & Applications</h2>
+            <p style="margin-bottom: 2rem;">Get the Electric Dreams theme for your favorite applications:</p>
+
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#00D9FF" stroke-width="2">
+                            <path d="M14 2l6 6v14a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2h8z"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Vim / Neovim</h3>
+                    <p class="app-description">Full-featured colorscheme with TreeSitter and LSP support</p>
+                    <div class="app-install">
+                        <code class="install-code">Plug 'nullveil/vim-electric-dreams'</code>
+                        <button class="app-btn" onclick="window.open('vim-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FF006E" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Hyprland</h3>
+                    <p class="app-description">Neon window manager theme with glowing borders and smooth animations</p>
+                    <div class="app-install">
+                        <code class="install-code">source = ~/.config/hypr/themes/electric-dreams.conf</code>
+                        <button class="app-btn" onclick="window.open('hyprland-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1DE9B6" stroke-width="2">
+                            <rect x="5" y="11" width="14" height="10" rx="2"/>
+                            <circle cx="12" cy="16" r="1"/>
+                            <path d="M8 11V7a4 4 0 018 0v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Hyprlock</h3>
+                    <p class="app-description">Matching lock screen with neon rings and animated displays</p>
+                    <div class="app-install">
+                        <code class="install-code">~/.config/hypr/hyprlock.conf</code>
+                        <button class="app-btn" onclick="window.open('hyprland-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M6 8l4 4-4 4M12 16h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Kitty Terminal</h3>
+                    <p class="app-description">True color terminal theme with electric cyan cursor</p>
+                    <div class="app-install">
+                        <code class="install-code">include themes/electric-dreams.conf</code>
+                        <button class="app-btn" onclick="window.open('kitty-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Visual Studio Code</h3>
+                    <p class="app-description">Complete UI and syntax theme for VSCode and VSCodium</p>
+                    <div class="app-install">
+                        <code class="install-code">ext install electric-dreams</code>
+                        <button class="app-btn" onclick="window.open('vscode-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#E91E63" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a10 10 0 0 0-3 19.5"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Firefox</h3>
+                    <p class="app-description">Browser theme with cyan tab indicators and neon accents</p>
+                    <div class="app-install">
+                        <code class="install-code">Add to Firefox (coming soon)</code>
+                        <button class="app-btn" onclick="window.open('firefox-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#1DE9B6" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="2" rx="1"/>
+                            <rect x="2" y="10" width="14" height="2" rx="1"/>
+                            <rect x="2" y="16" width="18" height="2" rx="1"/>
+                            <circle cx="20" cy="11" r="2" fill="#1DE9B6"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">Waybar</h3>
+                    <p class="app-description">Status bar theme with color-coded modules and glowing effects</p>
+                    <div class="app-install">
+                        <code class="install-code">~/.config/waybar/style.css</code>
+                        <button class="app-btn" onclick="window.open('waybar-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FF006E" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="9" x2="9" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="app-name">tmux</h3>
+                    <p class="app-description">Terminal multiplexer theme with cyan borders and magenta highlights</p>
+                    <div class="app-install">
+                        <code class="install-code">set -g @plugin 'nylanalyn/electric-dreams-theme'</code>
+                        <button class="app-btn" onclick="window.open('tmux-electric-dreams.html', '_blank')">View Docs</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">Download Formats</h2>
+            <p style="margin-bottom: 1rem;">Get the raw theme data in various formats:</p>
+            <div class="downloads">
+                <button class="download-btn" onclick="downloadJSON()">Download JSON</button>
+                <button class="download-btn alt" onclick="downloadTOML()">Download TOML</button>
+                <button class="download-btn" onclick="downloadYAML()">Download YAML</button>
+                <button class="download-btn alt" onclick="downloadCSS()">Download CSS</button>
+            </div>
+        </section>
+    </div>
+
+    <div class="toast" id="toast">Color copied to clipboard!</div>
+
+    <script>
+        function copyColor(hex) {
+            navigator.clipboard.writeText(hex).then(() => {
+                const toast = document.getElementById('toast');
+                toast.textContent = `${hex} copied to clipboard!`;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        function downloadJSON() {
+            const theme = {
+                name: "Electric Dreams",
+                author: "nullveil",
+                colors: {
+                    base00: "#0A0A0F",
+                    base01: "#151520",
+                    base02: "#1A1A2E",
+                    base03: "#252535",
+                    base04: "#4A4A6A",
+                    base05: "#D0D0E0",
+                    base06: "#E8E8F0",
+                    base07: "#FFFFFF",
+                    red: "#FF1744",
+                    redDark: "#C41E3A",
+                    magenta: "#FF006E",
+                    magentaDark: "#D81B60",
+                    cyan: "#00D9FF",
+                    cyanBright: "#1DE9B6",
+                    cyanDark: "#00BFA5",
+                    purple: "#9C27B0",
+                    purpleDark: "#7B1FA2",
+                    purpleMid: "#6B5B95",
+                    pink: "#E91E63",
+                    violet: "#BB86FC"
+                },
+                ui: {
+                    background: "#0A0A0F",
+                    backgroundAlt: "#151520",
+                    backgroundFloat: "#1A1A2E",
+                    foreground: "#D0D0E0",
+                    foregroundBright: "#E8E8F0",
+                    border: "#FF006E",
+                    borderActive: "#00D9FF",
+                    borderInactive: "#4A4A6A"
+                },
+                status: {
+                    success: "#1DE9B6",
+                    warning: "#FF006E",
+                    error: "#FF1744",
+                    info: "#9C27B0"
+                }
+            };
+            downloadFile('electric-dreams.json', JSON.stringify(theme, null, 2));
+        }
+
+        function downloadTOML() {
+            const toml = `# Electric Dreams Theme
+[metadata]
+name = "Electric Dreams"
+author = "nullveil"
+
+[colors]
+base00 = "#0A0A0F"
+base01 = "#151520"
+base02 = "#1A1A2E"
+base03 = "#252535"
+base04 = "#4A4A6A"
+base05 = "#D0D0E0"
+base06 = "#E8E8F0"
+base07 = "#FFFFFF"
+
+red = "#FF1744"
+redDark = "#C41E3A"
+magenta = "#FF006E"
+magentaDark = "#D81B60"
+cyan = "#00D9FF"
+cyanBright = "#1DE9B6"
+cyanDark = "#00BFA5"
+purple = "#9C27B0"
+purpleDark = "#7B1FA2"
+purpleMid = "#6B5B95"
+pink = "#E91E63"
+violet = "#BB86FC"
+
+[ui]
+background = "#0A0A0F"
+backgroundAlt = "#151520"
+backgroundFloat = "#1A1A2E"
+foreground = "#D0D0E0"
+foregroundBright = "#E8E8F0"
+border = "#FF006E"
+borderActive = "#00D9FF"
+borderInactive = "#4A4A6A"
+
+[status]
+success = "#1DE9B6"
+warning = "#FF006E"
+error = "#FF1744"
+info = "#9C27B0"
+`;
+            downloadFile('electric-dreams.toml', toml);
+        }
+
+        function downloadYAML() {
+            const yaml = `# Electric Dreams Theme
+metadata:
+  name: Electric Dreams
+  author: nullveil
+
+colors:
+  base00: "#0A0A0F"
+  base01: "#151520"
+  base02: "#1A1A2E"
+  base03: "#252535"
+  base04: "#4A4A6A"
+  base05: "#D0D0E0"
+  base06: "#E8E8F0"
+  base07: "#FFFFFF"
+
+  red: "#FF1744"
+  redDark: "#C41E3A"
+  magenta: "#FF006E"
+  magentaDark: "#D81B60"
+  cyan: "#00D9FF"
+  cyanBright: "#1DE9B6"
+  cyanDark: "#00BFA5"
+  purple: "#9C27B0"
+  purpleDark: "#7B1FA2"
+  purpleMid: "#6B5B95"
+  pink: "#E91E63"
+  violet: "#BB86FC"
+
+ui:
+  background: "#0A0A0F"
+  backgroundAlt: "#151520"
+  backgroundFloat: "#1A1A2E"
+  foreground: "#D0D0E0"
+  foregroundBright: "#E8E8F0"
+  border: "#FF006E"
+  borderActive: "#00D9FF"
+  borderInactive: "#4A4A6A"
+
+status:
+  success: "#1DE9B6"
+  warning: "#FF006E"
+  error: "#FF1744"
+  info: "#9C27B0"
+`;
+            downloadFile('electric-dreams.yaml', yaml);
+        }
+
+        function downloadCSS() {
+            const css = `/* Electric Dreams Theme - CSS Variables */
+:root {
+  /* Base Colors */
+  --color-base00: #0A0A0F;
+  --color-base01: #151520;
+  --color-base02: #1A1A2E;
+  --color-base03: #252535;
+  --color-base04: #4A4A6A;
+  --color-base05: #D0D0E0;
+  --color-base06: #E8E8F0;
+  --color-base07: #FFFFFF;
+
+  /* Accent Colors */
+  --color-red: #FF1744;
+  --color-red-dark: #C41E3A;
+  --color-magenta: #FF006E;
+  --color-magenta-dark: #D81B60;
+  --color-cyan: #00D9FF;
+  --color-cyan-bright: #1DE9B6;
+  --color-cyan-dark: #00BFA5;
+  --color-purple: #9C27B0;
+  --color-purple-dark: #7B1FA2;
+  --color-purple-mid: #6B5B95;
+  --color-pink: #E91E63;
+  --color-violet: #BB86FC;
+
+  /* UI Colors */
+  --color-background: #0A0A0F;
+  --color-background-alt: #151520;
+  --color-background-float: #1A1A2E;
+  --color-foreground: #D0D0E0;
+  --color-foreground-bright: #E8E8F0;
+  --color-border: #FF006E;
+  --color-border-active: #00D9FF;
+  --color-border-inactive: #4A4A6A;
+
+  /* Status Colors */
+  --color-success: #1DE9B6;
+  --color-warning: #FF006E;
+  --color-error: #FF1744;
+  --color-info: #9C27B0;
+
+  /* RGBA Variants */
+  --color-background-transparent: rgba(10, 10, 15, 0.9);
+  --color-background-alt-transparent: rgba(21, 21, 32, 0.85);
+  --color-magenta-glow: rgba(255, 0, 110, 0.3);
+  --color-cyan-glow: rgba(0, 217, 255, 0.3);
+  --color-red-glow: rgba(255, 23, 68, 0.3);
+}
+`;
+            downloadFile('electric-dreams.css', css);
+        }
+
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            const toast = document.getElementById('toast');
+            toast.textContent = `${filename} downloaded!`;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

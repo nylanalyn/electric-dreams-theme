@@ -1,0 +1,50 @@
+{
+  "name": "electric-dreams",
+  "displayName": "Electric Dreams",
+  "description": "A bold neon colorscheme with electric cyan, hot magenta, and vibrant purple on deep black backgrounds",
+  "version": "1.0.0",
+  "publisher": "nullveil",
+  "author": {
+    "name": "nullveil"
+  },
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark theme",
+    "neon",
+    "cyberpunk",
+    "electric",
+    "cyan",
+    "magenta",
+    "purple",
+    "high contrast"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0A0A0F",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nullveil/vscode-electric-dreams"
+  },
+  "bugs": {
+    "url": "https://github.com/nullveil/vscode-electric-dreams/issues"
+  },
+  "homepage": "https://github.com/nullveil/vscode-electric-dreams#readme",
+  "license": "MIT",
+  "contributes": {
+    "themes": [
+      {
+        "label": "Electric Dreams",
+        "uiTheme": "vs-dark",
+        "path": "./themes/electric-dreams-color-theme.json"
+      }
+    ]
+  }
+}

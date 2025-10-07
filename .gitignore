@@ -1,0 +1,18 @@
+# Editor and IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Claude
+.claude/
+
+# Temporary files
+*.tmp
+*.bak
+.*.backup
+
+# OS files
+Thumbs.db
