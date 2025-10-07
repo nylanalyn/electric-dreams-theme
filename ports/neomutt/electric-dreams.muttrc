@@ -1,0 +1,97 @@
+# Electric Dreams Theme for Neomutt
+# A vibrant neon-inspired color theme featuring electric cyan and hot magenta accents
+# URL: https://github.com/nylanalyn/electric-dreams-theme
+
+# Basic Colors
+color normal        color252  color232   # Light gray on pure black
+color indicator     color232  color45    # Black on electric cyan (selected)
+color tree          color213  color232   # Hot magenta for thread tree
+color status        color252  color233   # Light gray on slightly lighter black
+color error         color196  color232   # Vivid crimson on black
+color message       color45   color232   # Electric cyan for info messages
+color signature     color103  color232   # Cool gray for signatures
+color attachment    color141  color232   # Light purple for attachments
+color search        color232  color213   # Black on hot magenta
+color tilde         color103  color232   # Cool gray for padding
+color markers       color213  color232   # Hot magenta for wrapped line markers
+
+# Index Colors (Email List)
+color index         color45   color232  ~N           # New messages - electric cyan
+color index         color213  color232  ~O           # Old messages - hot magenta
+color index         color252  color232  ~R           # Read messages - light gray
+color index         color85   color232  ~Q           # Replied - turquoise
+color index         color196  color232  ~D           # Deleted - vivid crimson
+color index         color141  color232  ~T           # Tagged - light purple
+color index         color199  color232  ~F           # Flagged/Important - pink
+
+# Bold for new messages
+color index_number  color45   color232  ~N           # New message numbers
+color index_author  color45   color232  ~N           # New message authors
+color index_subject color45   color232  ~N           # New message subjects
+
+# Index field colors
+color index_author  color85   color232  '.*'         # Author names - turquoise
+color index_number  color103  color232  '.*'         # Message numbers - cool gray
+color index_subject color252  color232  '.*'         # Subject line - light gray
+color index_size    color141  color232  '.*'         # Message size - light purple
+color index_date    color213  color232  '.*'         # Date - hot magenta
+
+# Message Header Colors
+color header        color45   color232  "^(From|To|Cc|Bcc):"
+color header        color213  color232  "^Subject:"
+color header        color141  color232  "^Date:"
+color header        color85   color232  "^Reply-To:"
+color header        color199  color232  "^X-.*:"
+
+# Message Body Colors
+color quoted        color141  color232               # Quoted text level 1 - light purple
+color quoted1       color213  color232               # Quoted text level 2 - hot magenta
+color quoted2       color45   color232               # Quoted text level 3 - electric cyan
+color quoted3       color85   color232               # Quoted text level 4 - turquoise
+color quoted4       color199  color232               # Quoted text level 5 - pink
+color quoted5       color135  color232               # Quoted text level 6 - deep purple
+
+# URLs and email addresses
+color body          color45   color232  "(https?|ftp)://[^ ]+"
+color body          color45   color232  "[a-z0-9._-]+@[a-z0-9._-]+"
+
+# Email addresses in angle brackets
+color body          color85   color232  "<[a-z0-9._-]+@[a-z0-9._-]+>"
+
+# Bold, italic, underline
+color bold          color213  color232  bold
+color italic        color141  color232  italic
+color underline     color45   color232  underline
+
+# PGP/GPG Messages
+color body          color85   color232  "^gpg: Good signature.*"
+color body          color196  color232  "^gpg: BAD signature.*"
+color body          color196  color232  "^gpg: WARNING:.*"
+color body          color199  color232  "^gpg: Can't check signature.*"
+
+# Sidebar (if enabled)
+color sidebar_new           color45   color232   # New messages - electric cyan
+color sidebar_flagged       color199  color232   # Flagged - pink
+color sidebar_highlight     color232  color213   # Selected - black on hot magenta
+color sidebar_indicator     color232  color45    # Indicator - black on electric cyan
+color sidebar_divider       color103  color232   # Divider - cool gray
+color sidebar_ordinary      color252  color232   # Normal folders - light gray
+color sidebar_unread        color85   color232   # Unread count - turquoise
+
+# Progress bar (when loading messages)
+color progress      color232  color213   # Black on hot magenta
+
+# Composition colors
+color compose header            color45   color232
+color compose security_encrypt  color85   color232
+color compose security_sign     color85   color232
+color compose security_both     color85   color232
+color compose security_none     color103  color232
+
+# Highlights within the body
+color body          color196  color232  "[!?]{3,}"           # Multiple punctuation
+color body          color199  color232  "\\*[^*]+\\*"        # *bold* text
+color body          color141  color232  "_[^_]+_"            # _underlined_ text
+color body          color135  color232  "\\b[A-Z][A-Z0-9_-]*\\b"  # ALL CAPS words
+
+# vim: ft=muttrc

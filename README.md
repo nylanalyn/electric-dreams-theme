@@ -36,6 +36,9 @@ Electric Dreams is a comprehensive theme collection bringing neon aesthetics to 
 - **[Vim/Neovim](ports/vim/)** - Syntax highlighting and UI theme
 - **[VSCode/VSCodium](ports/vscode/)** - Complete editor theme
 
+### Email
+- **[Neomutt](ports/neomutt/)** - Terminal-based email client theme
+
 ### Browser
 - **[Firefox](ports/firefox/)** - Browser theme with neon accents
 
@@ -116,6 +119,7 @@ electric-dreams-theme/
 │   ├── firefox/
 │   ├── hyprland/
 │   ├── kitty/
+│   ├── neomutt/
 │   ├── tmux/
 │   ├── vim/
 │   ├── vscode/
