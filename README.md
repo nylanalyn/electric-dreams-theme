@@ -2,7 +2,7 @@
 
 > A vibrant neon-inspired color theme featuring electric cyan and hot magenta accents
 
-**[View Theme Website](https://nylanalyn.github.io/electric-dreams-theme/)** | **[Color Palette](#color-palette)**
+**[View Theme Website](https://nylan.cat/electric-dreams-theme/)** | **[Color Palette](#color-palette)**
 
 Electric Dreams is a comprehensive theme collection bringing neon aesthetics to your development environment. From your window manager to your terminal, editor, and browser - create a cohesive, eye-catching setup.
 
@@ -83,7 +83,7 @@ killall waybar && waybar &
 
 ## 📖 Documentation
 
-Visit the [theme website](https://nylanalyn.github.io/electric-dreams-theme/) for:
+Visit the [theme website](https://nylan.cat/electric-dreams-theme/) for:
 - Detailed installation instructions for each port
 - Screenshots and previews
 - Customization guides
@@ -143,7 +143,7 @@ Share your Electric Dreams setup! Tag `#ElectricDreamsTheme` or open a discussio
 
 ## 🔗 Links
 
-- **Website**: https://nylanalyn.github.io/electric-dreams-theme/
+- **Website**: https://nylan.cat/electric-dreams-theme/
 - **Repository**: https://github.com/nylanalyn/electric-dreams-theme
 
 ---

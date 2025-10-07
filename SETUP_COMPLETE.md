@@ -41,7 +41,7 @@ All HTML files now reference:
 ### 4. GitHub Pages Ready
 - Website files in `/website` directory
 - `.nojekyll` file to prevent Jekyll processing
-- Will be hosted at: `https://nylanalyn.github.io/electric-dreams-theme/`
+- Will be hosted at: `https://nylan.cat/electric-dreams-theme/`
 
 ## 🚀 Next Steps
 
@@ -68,7 +68,7 @@ Follow the instructions in `GITHUB_SETUP.md`:
 Once published, test these:
 
 ### Website
-https://nylanalyn.github.io/electric-dreams-theme/
+https://nylan.cat/electric-dreams-theme/
 
 ### Raw Files
 ```bash

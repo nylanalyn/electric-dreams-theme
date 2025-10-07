@@ -47,13 +47,13 @@ git push -u origin main
 6. Wait 1-2 minutes for GitHub to build your site
 
 Your site will be available at:
-**https://nylanalyn.github.io/electric-dreams-theme/**
+**https://nylan.cat/electric-dreams-theme/**
 
 ## Step 4: Verify Everything Works
 
 Test these URLs to make sure they work:
 
-1. **Website**: https://nylanalyn.github.io/electric-dreams-theme/
+1. **Website**: https://nylan.cat/electric-dreams-theme/
 2. **Raw theme file**: https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.tmuxtheme
 3. **TPM plugin**: Test by adding to your `~/.tmux.conf`:
    ```bash
@@ -80,7 +80,7 @@ If you have a custom domain:
    - `theme`
    - `colorscheme`
    - `terminal-theme`
-4. Add website URL: `https://nylanalyn.github.io/electric-dreams-theme/`
+4. Add website URL: `https://nylan.cat/electric-dreams-theme/`
 5. Save changes
 
 ## Troubleshooting
