@@ -31,6 +31,7 @@ Electric Dreams is a comprehensive theme collection bringing neon aesthetics to 
 ### Terminals & Multiplexers
 - **[Kitty](ports/kitty/)** - GPU-accelerated terminal emulator theme
 - **[tmux](ports/tmux/)** - Terminal multiplexer with TPM support
+- **[CAVA](ports/cava/)** - Audio visualizer with neon gradient
 
 ### Editors
 - **[Vim/Neovim](ports/vim/)** - Syntax highlighting and UI theme
@@ -116,6 +117,7 @@ Each port also has its own README in the `ports/` directory.
 ```
 electric-dreams-theme/
 ├── ports/               # Theme ports for each application
+│   ├── cava/
 │   ├── firefox/
 │   ├── hyprland/
 │   ├── kitty/
