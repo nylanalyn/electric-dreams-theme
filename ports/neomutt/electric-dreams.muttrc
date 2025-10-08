@@ -59,9 +59,9 @@ color body          color45   color232  "[a-z0-9._-]+@[a-z0-9._-]+"
 color body          color85   color232  "<[a-z0-9._-]+@[a-z0-9._-]+>"
 
 # Bold, italic, underline
-color bold          color213  color232  bold
-color italic        color141  color232  italic
-color underline     color45   color232  underline
+color bold          color213  color232
+color italic        color141  color232
+color underline     color45   color232
 
 # PGP/GPG Messages
 color body          color85   color232  "^gpg: Good signature.*"
