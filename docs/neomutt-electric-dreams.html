@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Neomutt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1DE9B6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #FF006E;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #E8E8F0;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #00D9FF;
+            border-bottom: 2px solid #1A1A2E;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            color: #FF006E;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #151520;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #1DE9B6;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #4A4A6A;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #D0D0E0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: -2px;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: #151520;
+            border: 2px solid #4A4A6A;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #D0D0E0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+        }
+
+        .tab:hover {
+            border-color: #00D9FF;
+            color: #00D9FF;
+        }
+
+        .tab.active {
+            background: #1A1A2E;
+            border-color: #00D9FF;
+            color: #00D9FF;
+        }
+
+        .tab-content {
+            display: none;
+            background: #151520;
+            padding: 2rem;
+            border-radius: 0 8px 8px 8px;
+            border: 2px solid #4A4A6A;
+        }
+
+        .tab-content.active {
+            display: block;
+            border-color: #00D9FF;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #151520;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #4A4A6A;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #FF006E;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: #00D9FF;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00D9FF, #1DE9B6);
+            color: #0A0A0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .color-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #151520;
+            border-radius: 6px;
+            border: 1px solid #4A4A6A;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 2px solid #4A4A6A;
+            flex-shrink: 0;
+        }
+
+        .color-info {
+            flex: 1;
+        }
+
+        .color-name {
+            font-size: 0.85rem;
+            color: #E8E8F0;
+            font-weight: bold;
+        }
+
+        .color-code {
+            font-size: 0.75rem;
+            color: #1DE9B6;
+            font-family: monospace;
+        }
+
+        .preview-section {
+            background: #151520;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #FF006E;
+            margin: 2rem 0;
+        }
+
+        .neomutt-demo {
+            background: #0A0A0F;
+            border: 2px solid #4A4A6A;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .neomutt-header {
+            background: #151520;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #4A4A6A;
+            color: #E8E8F0;
+        }
+
+        .neomutt-index {
+            padding: 1rem;
+            font-family: monospace;
+        }
+
+        .neomutt-line {
+            padding: 0.25rem 0.5rem;
+            border-radius: 2px;
+            margin: 2px 0;
+        }
+
+        .neomutt-line.new {
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        .neomutt-line.flagged {
+            color: #E91E63;
+        }
+
+        .neomutt-line.read {
+            color: #D0D0E0;
+        }
+
+        .neomutt-line.selected {
+            background: #00D9FF;
+            color: #0A0A0F;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: #151520;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #4A4A6A;
+        }
+
+        th {
+            background: #1A1A2E;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #1A1A2E;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+
+        <header>
+            <h1>Electric Dreams for Neomutt</h1>
+            <p class="subtitle">Terminal email client theme with color-coded messages and neon accents</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <div class="feature-title">Color-Coded Messages</div>
+                    <p>New, read, replied, flagged, and deleted messages all have distinct colors</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Syntax Highlighting</div>
+                    <p>Headers, URLs, email addresses, and quoted text beautifully highlighted</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">PGP/GPG Support</div>
+                    <p>Security indicators with color-coded signature verification</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Sidebar Theme</div>
+                    <p>Matching colors for the Neomutt sidebar with cyan highlights</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Preview</h2>
+            <div class="preview-section">
+                <h3 style="color: #00D9FF; margin-top: 0;">Index View Demo</h3>
+                <div class="neomutt-demo">
+                    <div class="neomutt-header">
+                        Inbox - 45 messages (3 new)
+                    </div>
+                    <div class="neomutt-index">
+                        <div class="neomutt-line selected">   1 N Oct 07 Alice Thompson  (2.1K) RE: Project updates and next steps</div>
+                        <div class="neomutt-line new">   2 N Oct 07 Bob Martinez     (1.8K) [URGENT] Server maintenance tonight</div>
+                        <div class="neomutt-line new">   3 N Oct 07 Carol Davis     (3.2K) Meeting notes - Q4 planning session</div>
+                        <div class="neomutt-line flagged">   4 F Oct 06 David Chen      (1.5K) Code review request for PR #234</div>
+                        <div class="neomutt-line read">   5   Oct 06 Eve Wilson      (2.8K) Weekly team sync - action items</div>
+                        <div class="neomutt-line read">   6 r Oct 06 Frank Brown     (4.1K) Re: Documentation updates needed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Color Scheme</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Color</th>
+                        <th>Hex</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>New messages</td>
+                        <td style="color: #00D9FF;">Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Important/flagged</td>
+                        <td style="color: #FF006E;">Hot Magenta</td>
+                        <td><code>#FF006E</code></td>
+                    </tr>
+                    <tr>
+                        <td>Headers</td>
+                        <td style="color: #00D9FF;">Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Quoted text</td>
+                        <td style="color: #BB86FC;">Light Purple</td>
+                        <td><code>#BB86FC</code></td>
+                    </tr>
+                    <tr>
+                        <td>Links/URLs</td>
+                        <td style="color: #00D9FF;">Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                    </tr>
+                    <tr>
+                        <td>Errors</td>
+                        <td style="color: #FF1744;">Vivid Crimson</td>
+                        <td><code>#FF1744</code></td>
+                    </tr>
+                    <tr>
+                        <td>Success/Signed</td>
+                        <td style="color: #1DE9B6;">Turquoise</td>
+                        <td><code>#1DE9B6</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('quick')">Quick Install (Recommended)</div>
+                <div class="tab" onclick="showTab('manual')">Manual Copy-Paste</div>
+            </div>
+
+            <div id="quick" class="tab-content active">
+                <h3>Quick Install</h3>
+
+                <p>Download and apply the theme in one command:</p>
+                <pre><code># Create theme directory
+mkdir -p ~/.config/neomutt/themes
+
+# Download theme file
+curl -o ~/.config/neomutt/themes/electric-dreams.muttrc \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/neomutt/electric-dreams.muttrc
+
+# Add to neomutt config
+echo "source ~/.config/neomutt/themes/electric-dreams.muttrc" >> ~/.config/neomutt/neomuttrc
+
+# Restart Neomutt or reload with :source</code></pre>
+
+                <p>That's it! The theme should now be active.</p>
+            </div>
+
+            <div id="manual" class="tab-content">
+                <h3>Manual Installation</h3>
+
+                <p><strong>Step 1: Download the theme file</strong></p>
+                <p>Visit <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/neomutt/electric-dreams.muttrc" style="color: #00D9FF;">the theme file on GitHub</a> and copy its contents.</p>
+
+                <p><strong>Step 2: Create the theme file</strong></p>
+                <pre><code>mkdir -p ~/.config/neomutt/themes
+nano ~/.config/neomutt/themes/electric-dreams.muttrc</code></pre>
+                <p>Paste the theme contents and save the file.</p>
+
+                <p><strong>Step 3: Source in your neomutt config</strong></p>
+                <p>Add to <code>~/.config/neomutt/neomuttrc</code> or <code>~/.neomuttrc</code>:</p>
+                <pre><code>source ~/.config/neomutt/themes/electric-dreams.muttrc</code></pre>
+
+                <p><strong>Step 4: Reload Neomutt</strong></p>
+                <p>Restart Neomutt or reload with:</p>
+                <pre><code>:source ~/.config/neomutt/neomuttrc</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <p>Override specific colors by adding additional <code>color</code> commands after sourcing the theme in your config file:</p>
+
+            <h3>Use Different Indicator Color</h3>
+            <pre><code>source ~/.config/neomutt/themes/electric-dreams.muttrc
+
+# Override the indicator color to use hot magenta
+color indicator color232 color213</code></pre>
+
+            <h3>Change New Message Color</h3>
+            <pre><code># Make new messages use turquoise instead of cyan
+color index color85 color232 ~N</code></pre>
+
+            <h3>Modify Quoted Text Colors</h3>
+            <pre><code># Use different colors for quote levels
+color quoted  color199 color232  # Pink for level 1
+color quoted1 color141 color232  # Purple for level 2</code></pre>
+        </section>
+
+        <section>
+            <h2>Message State Colors</h2>
+            <div class="color-demo">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #00D9FF; border-color: #00D9FF;"></div>
+                    <div class="color-info">
+                        <div class="color-name">New Messages</div>
+                        <div class="color-code">#00D9FF</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #E91E63; border-color: #E91E63;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Flagged/Important</div>
+                        <div class="color-code">#E91E63</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FF006E; border-color: #FF006E;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Old Messages</div>
+                        <div class="color-code">#FF006E</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #1DE9B6; border-color: #1DE9B6;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Replied</div>
+                        <div class="color-code">#1DE9B6</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FF1744; border-color: #FF1744;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Deleted</div>
+                        <div class="color-code">#FF1744</div>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #BB86FC; border-color: #BB86FC;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Tagged</div>
+                        <div class="color-code">#BB86FC</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Recommended Neomutt Settings</h2>
+            <p>For the best experience with Electric Dreams:</p>
+
+            <h3>Enable Sidebar</h3>
+            <pre><code>set sidebar_visible = yes
+set sidebar_width = 25
+set sidebar_format = "%D%* %?N?%N/?%S"
+set sidebar_new_mail_only = no</code></pre>
+
+            <h3>Better Threading</h3>
+            <pre><code>set sort = threads
+set sort_aux = reverse-last-date-received</code></pre>
+
+            <h3>Improved Index Format</h3>
+            <pre><code>set index_format = "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"</code></pre>
+        </section>
+
+        <section>
+            <h2>Download</h2>
+            <div class="download-section">
+                <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/neomutt/electric-dreams.muttrc" class="download-btn" download>Download .muttrc</a>
+                <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/neomutt/README.md" class="download-btn" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul class="feature-list">
+                <li><strong>Neomutt</strong> or Mutt 1.5.12 and later</li>
+                <li><strong>Terminal</strong> with 256-color support (true color recommended)</li>
+                <li><strong>Optional:</strong> <a href="https://www.nerdfonts.com/" style="color: #00D9FF;">Nerd Font</a> for best appearance</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Works Great With</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div style="color: #00D9FF; font-weight: bold;">Kitty Terminal</div>
+                    <p style="font-size: 0.85rem;">Electric Dreams terminal theme</p>
+                </div>
+                <div class="feature-card">
+                    <div style="color: #FF006E; font-weight: bold;">Neovim/Vim</div>
+                    <p style="font-size: 0.85rem;">Matching editor theme</p>
+                </div>
+                <div class="feature-card">
+                    <div style="color: #1DE9B6; font-weight: bold;">tmux</div>
+                    <p style="font-size: 0.85rem;">Terminal multiplexer theme</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+
+            <h3>Theme not loading?</h3>
+            <pre><code># Check if config has errors
+neomutt -n
+
+# Verify file path
+ls -la ~/.config/neomutt/themes/electric-dreams.muttrc</code></pre>
+
+            <h3>Colors look wrong?</h3>
+            <p>Make sure your terminal supports 256 colors or true color. Check with:</p>
+            <pre><code># Test 256 color support
+curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash</code></pre>
+
+            <p>Set your terminal properly:</p>
+            <pre><code># For bash/zsh
+export TERM=xterm-256color</code></pre>
+
+            <h3>Sidebar not showing?</h3>
+            <p>Make sure sidebar is enabled:</p>
+            <pre><code>set sidebar_visible = yes</code></pre>
+        </section>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
