@@ -1,0 +1,63 @@
+# Electric Dreams color scheme for Alacritty
+# Author: nylan
+# https://nylan.cat/electric-dreams-theme/
+
+colors:
+  primary:
+    background: '0x0a0a0f'
+    foreground: '0xd0d0e0'
+    dim_foreground: '0x9fa0b9'
+
+  cursor:
+    text: '0x0a0a0f'
+    cursor: '0x00d9ff'
+
+  selection:
+    text: '0x0a0a0f'
+    background: '0x00d9ff33'
+
+  normal:
+    black:   '0x0a0a0f'
+    red:     '0xff1744'
+    green:   '0x1de9b6'
+    yellow:  '0xff006e'
+    blue:    '0x00d9ff'
+    magenta: '0x9c27b0'
+    cyan:    '0x1de9d8'
+    white:   '0xd0d0e0'
+
+  bright:
+    black:   '0x151520'
+    red:     '0xff4a66'
+    green:   '0x4df3c9'
+    yellow:  '0xff4fa0'
+    blue:    '0x33e3ff'
+    magenta: '0xbb86fc'
+    cyan:    '0x4ed9ff'
+    white:   '0xe8e8f0'
+
+  hints:
+    start:
+      foreground: '0xff006e'
+      background: '0x151520'
+    end:
+      foreground: '0x151520'
+      background: '0xff006e'
+
+bell:
+  animation: EaseOutExpo
+  color: '0xff006e55'
+  duration: 0
+
+window:
+  padding:
+    x: 6
+    y: 6
+  dynamic_padding: true
+  decorations: full
+
+cursor:
+  style:
+    shape: Beam
+    blinking: On
+  unfocused_hollow: false

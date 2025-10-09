@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for mako</title>
+    <style>
+        :root { color-scheme: dark; }
+        body {
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        header { text-align: center; margin-bottom: 3rem; }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: #E8E8F0;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #1DE9B6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .notification-preview {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(255, 0, 110, 0.18));
+            border: 1px solid rgba(0, 217, 255, 0.25);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(21, 21, 32, 0.9);
+            border: 1px solid rgba(255, 0, 110, 0.23);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        pre {
+            background: rgba(21, 21, 32, 0.92);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem;
+            overflow-x: auto;
+        }
+        code { font-size: 0.95rem; }
+        ul { padding-left: 1.2rem; }
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .download-btn {
+            border: none;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            color: #0A0A0F;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn.alt {
+            background: rgba(21, 21, 32, 0.9);
+            color: #00D9FF;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 217, 255, 0.26);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #00D9FF;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+        <header>
+            <h1>Electric Dreams for mako</h1>
+            <p class="subtitle">Wayland notifications with cyan borders, magenta progress bars, and translucent glow.</p>
+        </header>
+
+        <section class="notification-preview">
+            <h3>Preview</h3>
+            <p>Rounded 12px cards, cyan borders, and accent overrides for Spotify, Discord, and Thunderbird keep notifications on-theme.</p>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Semi-Transparent Cards</h3>
+                    <p>Notifications float above Hyprland blur without losing readability.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Urgency Colors</h3>
+                    <p>Green borders for low urgency, cyan for normal, magenta/red for high priority.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Large Icon Support</h3>
+                    <p>64px icons look crisp for media controls or chat apps.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>App Overrides</h3>
+                    <p>Spotify, Discord, and Thunderbird get dedicated border colors for quick identification.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <pre><code>mkdir -p ~/.config/mako
+curl -o ~/.config/mako/config \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/mako/electric-dreams.conf</code></pre>
+
+            <p>Reload mako:</p>
+            <pre><code>killall mako && mako &</code></pre>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadTheme()">Download Theme</button>
+                <a class="download-btn alt" href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/mako/README.md" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Hyprland Auto-Start</h2>
+            <pre><code># ~/.config/hypr/hyprland.conf
+exec-once = mako</code></pre>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <pre><code># Longer timeout for normal urgency
+[urgency=normal]
+default-timeout=7000
+
+# Smaller icons
+[global]
+max-icon-size=48</code></pre>
+
+            <p>Add more app-specific border colors by appending new <code>[app-name=XYZ]</code> blocks to the config.</p>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li>Mako notification daemon</li>
+                <li>Wayland compositor (Hyprland, sway, river, etc.)</li>
+                <li>Optional: JetBrainsMono Nerd Font</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            window.open('https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/mako/electric-dreams.conf', '_blank');
+        }
+    </script>
+</body>
+</html>

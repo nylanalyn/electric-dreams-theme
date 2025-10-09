@@ -501,7 +501,7 @@ curl -o ~/.config/waybar/themes/electric-dreams.css \
             <h2>Download</h2>
             <div class="download-section">
                 <button class="download-btn" onclick="downloadFile('style.css')">Download Theme</button>
-                <a href="waybar-electric-dreams/" class="download-btn">View Files</a>
+                <a href="https://github.com/nylanalyn/electric-dreams-theme/tree/main/ports/waybar" target="_blank" class="download-btn">View Files</a>
             </div>
         </section>
 
@@ -541,7 +541,7 @@ font-family: 'Your Font Name', monospace;</code></pre>
     <script>
         function downloadFile(filename) {
             const a = document.createElement('a');
-            a.href = `waybar-electric-dreams/${filename}`;
+            a.href = `https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/waybar/${filename}`;
             a.download = filename;
             document.body.appendChild(a);
             a.click();

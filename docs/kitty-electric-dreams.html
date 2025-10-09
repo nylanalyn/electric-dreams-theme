@@ -530,7 +530,7 @@ tab_bar_style hidden</code></pre>
             <h2>Download</h2>
             <div class="download-section">
                 <button class="download-btn" onclick="downloadFile('electric-dreams.conf')">Download Theme</button>
-                <a href="kitty-electric-dreams/README.md" class="download-btn alt" download>Download README</a>
+                <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/kitty/README.md" class="download-btn alt" download>Download README</a>
             </div>
         </section>
 
@@ -554,7 +554,7 @@ tab_bar_style hidden</code></pre>
 
         function downloadFile(filename) {
             const a = document.createElement('a');
-            a.href = `kitty-electric-dreams/${filename}`;
+            a.href = `https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/kitty/${filename}`;
             a.download = filename;
             document.body.appendChild(a);
             a.click();

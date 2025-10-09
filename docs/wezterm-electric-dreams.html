@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for WezTerm</title>
+    <style>
+        :root { color-scheme: dark; }
+        body {
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        header { text-align: center; margin-bottom: 3rem; }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: #E8E8F0;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(21, 21, 32, 0.85);
+            border: 1px solid rgba(255, 0, 110, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 28px rgba(0, 217, 255, 0.12);
+        }
+        p { color: #D0D0E0; }
+        pre {
+            background: rgba(21, 21, 32, 0.9);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem;
+            overflow-x: auto;
+        }
+        code { font-size: 0.95rem; }
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+        .download-btn {
+            border: none;
+            padding: 0.85rem 1.75rem;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            color: #0A0A0F;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn.alt {
+            background: rgba(21, 21, 32, 0.9);
+            color: #00D9FF;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 217, 255, 0.25);
+        }
+        .back-link {
+            display: inline-flex;
+            gap: 0.4rem;
+            align-items: center;
+            color: #00D9FF;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        ul { padding-left: 1.25rem; }
+        @media (max-width: 640px) {
+            h1 { font-size: 2.5rem; }
+            .container { padding: 2.5rem 1.25rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="index.html">← Back to Electric Dreams</a>
+        <header>
+            <h1>Electric Dreams for WezTerm</h1>
+            <p class="subtitle">Neon color scheme with cyan cursor glow and magenta tab accents.</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Color Scheme</h3>
+                    <p>Registers an <code>Electric Dreams</code> palette you can reuse across profiles.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Tab Styling</h3>
+                    <p>Flat tabs with cyan active states and magenta hover glow to match Waybar.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Pane Dimming</h3>
+                    <p>Inactive panes subtly dim to keep focus on the active window.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Window Padding</h3>
+                    <p>Soft 8px padding looks great with transparent backgrounds and blur.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <h3>Drop-in module</h3>
+            <pre><code>mkdir -p ~/.config/wezterm
+curl -o ~/.config/wezterm/electric_dreams.lua \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/wezterm/electric_dreams.lua</code></pre>
+
+            <p>Import the module in <code>wezterm.lua</code>:</p>
+            <pre><code>local wezterm = require("wezterm")
+local electric_dreams = require("electric_dreams")
+
+return wezterm.extend_config(electric_dreams)</code></pre>
+
+            <h3>Manual merge</h3>
+            <p>If you already return a table, pull the fields into your config:</p>
+            <pre><code>local electric_dreams = require("electric_dreams")
+
+return {
+  color_schemes = electric_dreams.color_schemes,
+  color_scheme = electric_dreams.color_scheme,
+  window_padding = electric_dreams.window_padding,
+  inactive_pane_hsb = electric_dreams.inactive_pane_hsb,
+  use_fancy_tab_bar = electric_dreams.use_fancy_tab_bar,
+}</code></pre>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadTheme()">Download Theme</button>
+                <a class="download-btn alt" href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/wezterm/README.md" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <pre><code>-- Prefer the default tab bar?
+use_fancy_tab_bar = true
+
+-- More contrast on inactive panes
+inactive_pane_hsb = { saturation = 0.75, brightness = 0.65 }
+
+-- Swap cursor color
+colors.cursor_bg = "#FF006E"
+colors.cursor_border = "#FF006E"</code></pre>
+
+            <p>All palette values are defined at the top of <code>electric_dreams.lua</code>, so you can tweak accents without touching the rest of the config.</p>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li>WezTerm 20230408 or newer</li>
+                <li>True color (24-bit) terminal support</li>
+                <li>Optional: JetBrainsMono Nerd Font for consistent glyphs</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            window.open('https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/wezterm/electric_dreams.lua', '_blank');
+        }
+    </script>
+</body>
+</html>

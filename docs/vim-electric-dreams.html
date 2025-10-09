@@ -342,7 +342,7 @@ vim.cmd([[colorscheme electric_dreams]])</code></pre>
             <h2>Download</h2>
             <p>Get the theme files directly:</p>
             <button class="download-btn" onclick="downloadVimTheme()">Download Colorscheme</button>
-            <a href="vim-electric-dreams/README.md" class="download-btn alt" download>Download README</a>
+            <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/vim/README.md" class="download-btn alt" download>Download README</a>
         </section>
 
         <section>
@@ -359,7 +359,7 @@ vim.cmd([[colorscheme electric_dreams]])</code></pre>
         function downloadVimTheme() {
             // Create a link to download the vim colorscheme file
             const a = document.createElement('a');
-            a.href = 'vim-electric-dreams/colors/electric_dreams.vim';
+            a.href = 'https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/vim/colors/electric_dreams.vim';
             a.download = 'electric_dreams.vim';
             document.body.appendChild(a);
             a.click();

@@ -1,0 +1,128 @@
+/* Electric Dreams GTK override
+ * Author: nylan (https://nylan.cat/electric-dreams-theme/)
+ */
+
+@define-color electric-bg #0A0A0F;
+@define-color electric-surface #151520;
+@define-color electric-surface-alt #1A1A2E;
+@define-color electric-border #00D9FF;
+@define-color electric-accent #FF006E;
+@define-color electric-accent-secondary #9C27B0;
+@define-color electric-fg #D0D0E0;
+@define-color electric-muted #4A4A6A;
+
+window,
+dialog,
+popover,
+.background {
+  background-color: @electric-bg;
+  color: @electric-fg;
+}
+
+headerbar,
+.titlebar,
+.menubar,
+.toolbar {
+  background-color: @electric-surface;
+  color: @electric-fg;
+  border-bottom: 1px solid alpha(@electric-border, 0.35);
+  box-shadow: none;
+}
+
+button,
+textview,
+entry,
+spinbutton,
+combobox,
+treeview.view,
+.card {
+  background-color: @electric-surface;
+  color: @electric-fg;
+  border-radius: 8px;
+  border: 1px solid alpha(@electric-border, 0.25);
+  box-shadow: 0 0 8px alpha(@electric-accent, 0.15);
+}
+
+button:focus,
+entry:focus,
+spinbutton:focus,
+combobox:focus,
+treeview.view:focus,
+.list-row:focus-within,
+.card:focus-within {
+  border-color: @electric-border;
+  box-shadow: 0 0 10px alpha(@electric-border, 0.4);
+}
+
+button.suggested-action,
+button.destructive-action,
+.accent {
+  background-image: none;
+  border-color: @electric-accent;
+  background-color: @electric-accent;
+  color: @electric-bg;
+}
+
+button.suggested-action:hover,
+button.destructive-action:hover {
+  background-color: shade(@electric-accent, 1.15);
+  border-color: shade(@electric-accent, 1.15);
+}
+
+progressbar trough,
+scale trough,
+levelbar {
+  background-color: @electric-surface-alt;
+  border-radius: 999px;
+}
+
+progressbar progress,
+scale highlight,
+levelbar block.low,
+levelbar block.high {
+  background-color: @electric-border;
+  border-radius: 999px;
+  box-shadow: 0 0 10px alpha(@electric-border, 0.35);
+}
+
+switch {
+  padding: 2px;
+  border-radius: 999px;
+  background-color: @electric-muted;
+}
+
+switch:checked {
+  background-color: alpha(@electric-border, 0.4);
+}
+
+switch slider {
+  border-radius: 999px;
+  background-color: @electric-surface;
+  border: 2px solid @electric-border;
+  transition: all 120ms ease-out;
+}
+
+switch:checked slider {
+  background-color: @electric-accent;
+  border-color: @electric-accent;
+}
+
+tooltip,
+.osd {
+  background-color: alpha(@electric-surface-alt, 0.95);
+  color: @electric-fg;
+  border-radius: 10px;
+  border: 1px solid alpha(@electric-border, 0.35);
+}
+
+selection {
+  background-color: alpha(@electric-border, 0.25);
+}
+
+link {
+  color: @electric-border;
+}
+
+link:hover {
+  color: @electric-accent;
+}

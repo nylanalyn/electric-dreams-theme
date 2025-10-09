@@ -1,5 +1,5 @@
 " Electric Dreams - A bold neon colorscheme for Vim
-" Maintainer: nylanalyn
+" Maintainer: nylan
 " Version: 1.0.0
 " URL: https://github.com/nylanalyn/electric-dreams-theme
 

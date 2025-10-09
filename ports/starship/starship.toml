@@ -1,0 +1,68 @@
+# Electric Dreams theme for Starship prompt
+# Author: nylan (https://nylan.cat/electric-dreams-theme/)
+
+add_newline = false
+right_format = """$time"""
+palette = "electric_dreams"
+
+format = """
+[$directory]($style)[$git_branch$git_status]($style)$nodejs$rust$python$character
+"""
+
+[palettes.electric_dreams]
+background = "#0A0A0F"
+surface = "#151520"
+foreground = "#D0D0E0"
+dim = "#4A4A6A"
+cyan = "#00D9FF"
+magenta = "#FF006E"
+purple = "#9C27B0"
+turquoise = "#1DE9B6"
+red = "#FF1744"
+
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold magenta)"
+
+[directory]
+style = "fg:foreground bg:surface bold"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+style = "fg:magenta bg:surface bold"
+format = "[ on $branch ]($style)"
+
+[git_status]
+style = "fg:turquoise bg:surface"
+format = "[ $all_status$ahead_behind ]($style)"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:cyan"
+format = "[ $time ]($style)"
+
+[nodejs]
+symbol = " "
+style = "fg:turquoise"
+format = "[$symbol$version]($style) "
+
+[python]
+symbol = " "
+style = "fg:magenta"
+format = "[$symbol$version( $virtualenv)]($style) "
+
+[rust]
+symbol = " "
+style = "fg:purple"
+format = "[$symbol$version]($style) "
+
+[cmd_duration]
+min_time = 500
+format = "[ took $duration ](fg:magenta)"
+
+[line_break]
+disabled = true

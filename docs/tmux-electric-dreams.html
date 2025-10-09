@@ -395,8 +395,8 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <div class="feature-title">TPM Support</div>
-                    <p>Easy installation via Tmux Plugin Manager</p>
+                    <div class="feature-title">Easy Setup</div>
+                    <p>Install with a single curl command or manual copy</p>
                 </div>
             </div>
         </section>
@@ -591,9 +591,9 @@ setw -g window-status-current-style "bg=#1de9b6,fg=#0a0a0f,bold"</code></pre>
         <section>
             <h2>Download</h2>
             <div class="download-section">
-                <button class="download-btn" onclick="downloadFile('electric-dreams.tmux')">Download .tmux</button>
+                <button class="download-btn" onclick="downloadFile('electric-dreams.conf')">Download .conf</button>
                 <button class="download-btn" onclick="downloadFile('electric-dreams.tmuxtheme')">Download .tmuxtheme</button>
-                <a href="tmux-electric-dreams/README.md" class="download-btn" download>Download README</a>
+                <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/README.md" class="download-btn" download>Download README</a>
             </div>
         </section>
 
@@ -602,7 +602,6 @@ setw -g window-status-current-style "bg=#1de9b6,fg=#0a0a0f,bold"</code></pre>
             <ul class="feature-list">
                 <li><strong>tmux</strong> 3.0 or later</li>
                 <li><strong>Terminal</strong> with true color support</li>
-                <li><strong>Optional:</strong> <a href="https://github.com/tmux-plugins/tpm" style="color: #00D9FF;">TPM</a> for easy installation</li>
                 <li><strong>Optional:</strong> <a href="https://www.nerdfonts.com/" style="color: #00D9FF;">Nerd Font</a> for best appearance</li>
             </ul>
         </section>
@@ -644,13 +643,6 @@ export TERM=xterm-256color</code></pre>
             <pre><code>set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ",*256col*:Tc"</code></pre>
 
-            <h3>TPM not working?</h3>
-            <pre><code># Make sure TPM is initialized at the bottom of ~/.tmux.conf
-run '~/.tmux/plugins/tpm/tpm'
-
-# Then reload and install
-tmux source ~/.tmux.conf
-~/.tmux/plugins/tpm/bin/install_plugins</code></pre>
         </section>
     </div>
 
@@ -669,7 +661,7 @@ tmux source ~/.tmux.conf
 
         function downloadFile(filename) {
             const a = document.createElement('a');
-            a.href = `tmux-electric-dreams/${filename}`;
+            a.href = `https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/${filename}`;
             a.download = filename;
             document.body.appendChild(a);
             a.click();

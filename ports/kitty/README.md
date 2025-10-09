@@ -343,6 +343,6 @@ MIT License - see LICENSE file for details
 
 ## Credits
 
-Created by [nylanalyn](https://github.com/nylanalyn)
+Created by [nylan](https://github.com/nylanalyn)
 
 Inspired by neon aesthetics and cyberpunk design.

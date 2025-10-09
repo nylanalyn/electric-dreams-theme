@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for GTK</title>
+    <style>
+        :root { color-scheme: dark; }
+        body {
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        header { text-align: center; margin-bottom: 3rem; }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: #E8E8F0;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #FF006E;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(21, 21, 32, 0.88);
+            border: 1px solid rgba(0, 217, 255, 0.22);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        pre {
+            background: rgba(21, 21, 32, 0.92);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem;
+            overflow-x: auto;
+        }
+        code { font-size: 0.95rem; }
+        ul { padding-left: 1.25rem; }
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .download-btn {
+            border: none;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            color: #0A0A0F;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn.alt {
+            background: rgba(21, 21, 32, 0.9);
+            color: #00D9FF;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 0, 110, 0.25);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #00D9FF;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+        <header>
+            <h1>Electric Dreams for GTK</h1>
+            <p class="subtitle">Neon CSS overrides that bring cyan glow and magenta accents to GTK 3 & 4 apps.</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Dark Surfaces</h3>
+                    <p>Windows, dialogs, and popovers use deep black backgrounds with subtle borders.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Accent Buttons</h3>
+                    <p>Suggested and destructive buttons glow in hot magenta with cyan focus rings.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rounded Controls</h3>
+                    <p>Entries, cards, progress bars, and switches pick up 8–12px rounding to match Hyprland.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Neon Focus</h3>
+                    <p>Cyan border and drop shadow highlight focused controls for fast navigation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <h3>GTK 4</h3>
+            <pre><code>mkdir -p ~/.config/gtk-4.0
+curl -o ~/.config/gtk-4.0/gtk.css \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/gtk/gtk.css</code></pre>
+
+            <h3>GTK 3</h3>
+            <pre><code>mkdir -p ~/.config/gtk-3.0
+curl -o ~/.config/gtk-3.0/gtk.css \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/gtk/gtk.css</code></pre>
+
+            <p>Restart your session or relaunch GTK apps to apply the changes.</p>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadTheme()">Download CSS</button>
+                <a class="download-btn alt" href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/gtk/README.md" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <pre><code>@define-color electric-accent #1DE9B6;  /* swap to turquoise */
+
+button.suggested-action,
+button.destructive-action,
+.accent {
+  background-color: @electric-accent;
+  border-color: @electric-accent;
+}</code></pre>
+
+            <p>Lower the cyan glow by reducing the <code>box-shadow</code> alpha, or tighten corners by changing <code>border-radius</code> values.</p>
+        </section>
+
+        <section>
+            <h2>Recommended Pairings</h2>
+            <ul>
+                <li><strong>Adwaita Variant:</strong> Install <code>adw-gtk3</code> for a modern base then add this override.</li>
+                <li><strong>Icons:</strong> Papirus-Nord or Tela icons complement the neon palette.</li>
+                <li><strong>Mako / Rofi:</strong> Combine with the notification and launcher ports for visual consistency.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li>GTK-based desktop environment or apps (GNOME, XFCE, etc.)</li>
+                <li>Writable <code>~/.config/gtk-3.0</code> and <code>gtk-4.0</code> directories</li>
+                <li>Optional: JetBrainsMono Nerd Font for UI consistency</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            window.open('https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/gtk/gtk.css', '_blank');
+        }
+    </script>
+</body>
+</html>

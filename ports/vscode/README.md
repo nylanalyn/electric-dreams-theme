@@ -334,7 +334,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## Credits
 
-**Created by**: [nylanalyn](https://github.com/nylanalyn)
+**Created by**: [nylan](https://github.com/nylanalyn)
 
 **Inspired by**: Neon aesthetics, cyberpunk design, and high-contrast themes
 
@@ -348,6 +348,6 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 [Report Bug](https://github.com/nylanalyn/electric-dreams-theme/issues) ·
 [Request Feature](https://github.com/nylanalyn/electric-dreams-theme/issues) ·
-[View Website](https://electric-dreams-theme.com)
+[View Website](https://nylan.cat/electric-dreams-theme/)
 
 </div>

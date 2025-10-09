@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Alacritty</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: #E8E8F0;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            color: #D0D0E0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(21, 21, 32, 0.85);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.08);
+        }
+        pre {
+            background: rgba(21, 21, 32, 0.9);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem;
+            overflow-x: auto;
+            position: relative;
+        }
+        code {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.95rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        th {
+            background: rgba(0, 217, 255, 0.1);
+            color: #00D9FF;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .download-btn {
+            border: none;
+            outline: none;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            color: #0A0A0F;
+            font-weight: bold;
+            border-radius: 999px;
+            padding: 0.85rem 1.75rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn.alt {
+            background: rgba(21, 21, 32, 0.9);
+            color: #00D9FF;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 217, 255, 0.3);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #00D9FF;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+        .color-swatch {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 640px) {
+            h1 { font-size: 2.4rem; }
+            .container { padding: 2.5rem 1.25rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+        <header>
+            <h1>Electric Dreams for Alacritty</h1>
+            <p class="subtitle">GPU terminal palette with cyan cursor glow and magenta highlights.</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Neon Palette</h3>
+                    <p>Primary and bright ANSI colors mapped to Electric Dreams cyan, magenta, and purple hues.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cursor Glow</h3>
+                    <p>Beam cursor in electric cyan with contrasting black text for readability.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Dynamic Padding</h3>
+                    <p>Soft inner padding keeps terminals centered when transparency is enabled.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Notification Pulse</h3>
+                    <p>Optional magenta visual bell to keep alerts on-theme without being intrusive.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <h3>Quick import</h3>
+            <pre><code>mkdir -p ~/.config/alacritty/colors
+curl -o ~/.config/alacritty/colors/electric-dreams.yml \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/alacritty/electric-dreams.yml</code></pre>
+
+            <p>Add the theme to <code>alacritty.yml</code>:</p>
+            <pre><code>import:
+  - ~/.config/alacritty/colors/electric-dreams.yml</code></pre>
+
+            <h3>Manual merge</h3>
+            <p>Copy the contents of <code>electric-dreams.yml</code> into your existing <code>colors:</code> block if you prefer a single file configuration.</p>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadTheme()">Download Theme</button>
+                <a class="download-btn alt" href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/alacritty/README.md" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Color Palette</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ANSI</th>
+                        <th>Hex</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="color-swatch" style="background:#0A0A0F;"></div>Black</td>
+                        <td><code>#0A0A0F</code></td>
+                        <td>Window background</td>
+                    </tr>
+                    <tr>
+                        <td><div class="color-swatch" style="background:#00D9FF;"></div>Electric Cyan</td>
+                        <td><code>#00D9FF</code></td>
+                        <td>Cursor, active selections</td>
+                    </tr>
+                    <tr>
+                        <td><div class="color-swatch" style="background:#FF006E;"></div>Hot Magenta</td>
+                        <td><code>#FF006E</code></td>
+                        <td>Bright yellow slot (contrast highlight)</td>
+                    </tr>
+                    <tr>
+                        <td><div class="color-swatch" style="background:#9C27B0;"></div>Deep Purple</td>
+                        <td><code>#9C27B0</code></td>
+                        <td>Magenta slot, prompt glyphs</td>
+                    </tr>
+                    <tr>
+                        <td><div class="color-swatch" style="background:#1DE9B6;"></div>Turquoise</td>
+                        <td><code>#1DE9B6</code></td>
+                        <td>Green slot & hints</td>
+                    </tr>
+                    <tr>
+                        <td><div class="color-swatch" style="background:#D0D0E0;"></div>Light Lavender</td>
+                        <td><code>#D0D0E0</code></td>
+                        <td>Foreground text</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <pre><code># Change cursor style
+cursor:
+  style:
+    shape: Block
+    blinking: Off
+
+# Softer padding
+window:
+  padding:
+    x: 4
+    y: 4</code></pre>
+
+            <p>Disable the magenta visual bell pulse by removing the <code>bell</code> section or setting <code>duration: 0</code>.</p>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li>Alacritty 0.12+</li>
+                <li>GPU with 24-bit color support</li>
+                <li>JetBrainsMono Nerd Font (optional)</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            window.open('https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/alacritty/electric-dreams.yml', '_blank');
+        }
+    </script>
+</body>
+</html>

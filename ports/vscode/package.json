@@ -4,7 +4,7 @@
   "description": "A bold neon colorscheme with electric cyan, hot magenta, and vibrant purple on deep black backgrounds",
   "version": "1.0.0",
   "publisher": "nylanalyn",
-  "author": "nylanalyn",
+  "author": "nylan",
   "engines": {
     "vscode": "^1.60.0"
   },

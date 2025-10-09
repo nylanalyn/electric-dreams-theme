@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Rofi</title>
+    <style>
+        :root { color-scheme: dark; }
+        body {
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        header { text-align: center; margin-bottom: 3rem; }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: #E8E8F0;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #FF006E;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .preview {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.12), rgba(255, 0, 110, 0.1));
+            border: 1px solid rgba(0, 217, 255, 0.25);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .preview::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255,0,110,0.25), transparent 55%);
+            pointer-events: none;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(21, 21, 32, 0.85);
+            border: 1px solid rgba(255, 0, 110, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 30px rgba(0, 217, 255, 0.12);
+        }
+        pre {
+            background: rgba(21, 21, 32, 0.92);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem;
+            overflow-x: auto;
+        }
+        code { font-size: 0.95rem; }
+        ul { padding-left: 1.25rem; }
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .download-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 0.85rem 1.6rem;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            color: #0A0A0F;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn.alt {
+            background: rgba(21, 21, 32, 0.9);
+            color: #00D9FF;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 0, 110, 0.28);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            color: #00D9FF;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Electric Dreams</a>
+        <header>
+            <h1>Electric Dreams for Rofi</h1>
+            <p class="subtitle">Transparent application launcher with cyan prompt and magenta selection glow.</p>
+        </header>
+
+        <div class="preview">
+            <h3>Live Preview</h3>
+            <p>Electric cyan prompt, hot magenta selection background, and deep violet surface highlight the apps list.</p>
+        </div>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Transparent Window</h3>
+                    <p>Real transparency with blur-friendly background to match Hyprland.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cyan Prompt</h3>
+                    <p>Accent underline and prompt colour make the search input pop.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Icon Friendly</h3>
+                    <p>Supports app icons and multiple modi—drun, run, and window.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rounded Corners</h3>
+                    <p>8px card styling mirrors the Waybar and GTK overrides.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <pre><code>mkdir -p ~/.config/rofi/themes
+curl -o ~/.config/rofi/themes/electric-dreams.rasi \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/rofi/electric-dreams.rasi</code></pre>
+
+            <p>Launch Rofi with the theme:</p>
+            <pre><code>rofi -show drun -theme ~/.config/rofi/themes/electric-dreams.rasi</code></pre>
+
+            <h3>Persist the theme</h3>
+            <pre><code>mkdir -p ~/.config/rofi
+ln -sf ~/.config/rofi/themes/electric-dreams.rasi ~/.config/rofi/electric-dreams.rasi
+
+# ~/.config/rofi/config.rasi
+configuration {
+  theme: "electric-dreams";
+}</code></pre>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadTheme()">Download Theme</button>
+                <a class="download-btn alt" href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/rofi/README.md" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Hyprland Keybind</h2>
+            <pre><code># ~/.config/hypr/hyprland.conf
+bind = $mod, D, exec, rofi -show drun -theme ~/.config/rofi/themes/electric-dreams.rasi</code></pre>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <pre><code># Adjust width
+window {
+  width: 680px;
+}
+
+# More rows
+listview {
+  lines: 10;
+}</code></pre>
+
+            <p>Update font family by editing the <code>prompt</code> and <code>entry</code> blocks (JetBrainsMono is used by default).</p>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li>Rofi 1.7+ or rofi-wayland</li>
+                <li>Compositor with real transparency for the glow effect</li>
+                <li>JetBrainsMono Nerd Font (optional)</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            window.open('https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/rofi/electric-dreams.rasi', '_blank');
+        }
+    </script>
+</body>
+</html>

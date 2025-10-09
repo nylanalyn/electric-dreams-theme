@@ -54,11 +54,7 @@ Your site will be available at:
 Test these URLs to make sure they work:
 
 1. **Website**: https://nylan.cat/electric-dreams-theme/
-2. **Raw theme file**: https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.tmuxtheme
-3. **TPM plugin**: Test by adding to your `~/.tmux.conf`:
-   ```bash
-   set -g @plugin 'nylanalyn/electric-dreams-theme'
-   ```
+2. **Raw tmux theme file**: https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf
 
 ## Step 5: Optional - Add a Custom Domain
 
@@ -98,10 +94,10 @@ If you have a custom domain:
 - URLs must use `raw.githubusercontent.com`, not `github.com`
 - Format: `https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/path/to/file`
 
-### TPM can't find plugin?
-- Verify repository is public
-- Check that `electric-dreams.tmux` exists in the repository root
-- Make sure it's executable: `chmod +x electric-dreams.tmux`
+### tmux theme not loading?
+- Confirm `~/.config/tmux/themes/electric-dreams.conf` exists
+- Make sure `~/.tmux.conf` includes `source-file ~/.config/tmux/themes/electric-dreams.conf`
+- Reload tmux with `tmux source ~/.tmux.conf`
 
 ## Future Updates
 

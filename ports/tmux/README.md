@@ -12,63 +12,56 @@ A neon-inspired tmux theme featuring electric cyan and hot magenta accents.
 
 ## Installation
 
-### Via TPM (Tmux Plugin Manager) - Recommended
-
-1. Add to your `~/.tmux.conf`:
+### Quick Install (Download the theme file)
 
 ```bash
-set -g @plugin 'nylanalyn/electric-dreams-theme'
-```
+# Create theme directory
+mkdir -p ~/.config/tmux/themes
 
-2. Install the plugin:
-   - Press `prefix + I` (capital i) to fetch and source the plugin
-   - Or run: `~/.tmux/plugins/tpm/bin/install_plugins`
+# Download the theme
+curl -o ~/.config/tmux/themes/electric-dreams.conf \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf
 
-3. Reload tmux configuration:
+# Source it from ~/.tmux.conf
+echo "source-file ~/.config/tmux/themes/electric-dreams.conf" >> ~/.tmux.conf
 
-```bash
+# Reload tmux
 tmux source ~/.tmux.conf
 ```
 
-### Manual Installation
-
-1. Clone this repository:
+### Clone the repository
 
 ```bash
 git clone https://github.com/nylanalyn/electric-dreams-theme ~/.config/tmux/themes/electric-dreams
 ```
 
-2. Source the theme in your `~/.tmux.conf`:
+Then source either format from your `~/.tmux.conf`:
 
 ```bash
-run-shell ~/.config/tmux/themes/electric-dreams/electric-dreams.tmux
+# Standard configuration file
+source-file ~/.config/tmux/themes/electric-dreams/ports/tmux/electric-dreams.conf
+
+# Or use the variable-based format
+source-file ~/.config/tmux/themes/electric-dreams/ports/tmux/electric-dreams.tmuxtheme
 ```
 
-Or for the alternative format:
-
-```bash
-source-file ~/.config/tmux/themes/electric-dreams/electric-dreams.tmuxtheme
-```
-
-3. Reload tmux:
+Reload tmux after making changes:
 
 ```bash
 tmux source ~/.tmux.conf
 ```
 
-### Quick Install (Direct)
+### Manual copy-paste
 
-```bash
-# Download theme
-curl -o ~/.tmux-electric-dreams.conf \
-  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.tmuxtheme
-
-# Add to ~/.tmux.conf
-echo "source-file ~/.tmux-electric-dreams.conf" >> ~/.tmux.conf
-
-# Reload
-tmux source ~/.tmux.conf
-```
+1. Open the raw theme file in your browser:
+   - https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf
+2. Create the directory if needed:
+   ```bash
+   mkdir -p ~/.config/tmux/themes
+   ```
+   Then paste the contents into `~/.config/tmux/themes/electric-dreams.conf`
+3. Add `source-file ~/.config/tmux/themes/electric-dreams.conf` to `~/.tmux.conf`
+4. Run `tmux source ~/.tmux.conf`
 
 ## Color Palette
 
@@ -113,7 +106,7 @@ set -g pane-border-lines heavy
 
 - tmux 3.0 or later
 - Terminal with true color support
-- Optional: [TPM](https://github.com/tmux-plugins/tpm) for easy installation
+- Optional: JetBrainsMono Nerd Font for best appearance
 
 ## Compatibility
 

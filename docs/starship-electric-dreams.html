@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Dreams for Starship</title>
+    <style>
+        :root { color-scheme: dark; }
+        body {
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            background: #0A0A0F;
+            color: #D0D0E0;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        header { text-align: center; margin-bottom: 3rem; }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00D9FF, #FF006E, #9C27B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: #E8E8F0;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        pre {
+            background: rgba(21, 21, 32, 0.92);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem;
+            overflow-x: auto;
+        }
+        code { font-size: 0.95rem; }
+        ul { padding-left: 1.2rem; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: rgba(21, 21, 32, 0.88);
+            border: 1px solid rgba(255, 0, 110, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .download-btn {
+            border: none;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF, #FF006E);
+            color: #0A0A0F;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn.alt {
+            background: rgba(21, 21, 32, 0.9);
+            color: #00D9FF;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(0, 217, 255, 0.26);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #00D9FF;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="index.html">← Back to Electric Dreams</a>
+        <header>
+            <h1>Electric Dreams for Starship</h1>
+            <p class="subtitle">Shell prompt palette with cyan arrow glyphs and magenta accents.</p>
+        </header>
+
+        <section>
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Custom Palette</h3>
+                    <p>Defines an Electric Dreams palette for use across modules.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cyan Prompt Glyphs</h3>
+                    <p>Statement arrows with bold cyan foreground and red error fallback.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Right-Side Clock</h3>
+                    <p>Time module floats on the right, mirroring tmux status bar.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Language Colors</h3>
+                    <p>Node, Python, and Rust modules adopt turquoise, magenta, and purple accents.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <pre><code>curl -o ~/.config/starship.toml \
+  https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/starship/starship.toml</code></pre>
+
+            <p>Enable Starship in your shell (example for <code>zsh</code>):</p>
+            <pre><code>echo 'eval "$(starship init zsh)"' >> ~/.zshrc</code></pre>
+
+            <div class="download-section">
+                <button class="download-btn" onclick="downloadTheme()">Download Theme</button>
+                <a class="download-btn alt" href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/starship/README.md" download>Download README</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Format Overview</h2>
+            <pre><code>format = """
+[$directory]($style)[$git_branch$git_status]($style)$nodejs$rust$python$character
+"""
+right_format = """$time"""
+palette = "electric_dreams"</code></pre>
+        </section>
+
+        <section>
+            <h2>Customization</h2>
+            <pre><code># Make the prompt multi-line
+add_newline = true
+format = """
+$directory$git_branch$git_status
+$nodejs$rust$python$character
+"""
+
+# Swap prompt symbol
+[character]
+success_symbol = "[➜](bold cyan)"</code></pre>
+
+            <p>Disable the right-side clock by removing <code>right_format</code>, or add more modules (Docker, AWS, etc.) using the Electric Dreams palette.</p>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul>
+                <li>Starship 1.14+</li>
+                <li>Shell initialization (zsh, bash, fish, PowerShell…)</li>
+                <li>JetBrainsMono Nerd Font for glyph consistency</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function downloadTheme() {
+            window.open('https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/starship/starship.toml', '_blank');
+        }
+    </script>
+</body>
+</html>

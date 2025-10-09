@@ -517,7 +517,7 @@ windowrulev2 = bordercolor rgba(9c27b0ee), class:(discord)</code></pre>
             <div class="download-section">
                 <button class="download-btn" onclick="downloadFile('hyprland.conf')">Download Hyprland Theme</button>
                 <button class="download-btn alt" onclick="downloadFile('hyprlock.conf')">Download Hyprlock Theme</button>
-                <a href="hyprland-electric-dreams/README.md" class="download-btn" download>Download README</a>
+                <a href="https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/hyprland/README.md" class="download-btn" download>Download README</a>
             </div>
         </section>
 
@@ -550,7 +550,7 @@ windowrulev2 = bordercolor rgba(9c27b0ee), class:(discord)</code></pre>
 
         function downloadFile(filename) {
             const a = document.createElement('a');
-            a.href = `hyprland-electric-dreams/${filename}`;
+            a.href = `https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/hyprland/${filename}`;
             a.download = filename;
             document.body.appendChild(a);
             a.click();

@@ -1,0 +1,89 @@
+/**
+ * Electric Dreams Rofi Theme
+ * Author: nylan
+ * Website: https://nylan.cat/electric-dreams-theme/
+ */
+
+* {
+  background: #0A0A0F;
+  background-alt: #1A1A2E;
+  foreground: #D0D0E0;
+  selected: #FF006E;
+  active: #00D9FF;
+  urgent: #FF1744;
+  border-color: #FF006E;
+  spacing: 0px;
+}
+
+window {
+  transparency: "real";
+  location: center;
+  anchor: center;
+  background-color: @background;
+  border: 2px;
+  border-color: @selected;
+  border-radius: 8px;
+  padding: 20px;
+  width: 600px;
+}
+
+mainbox {
+  background-color: transparent;
+  children: [ inputbar, listview ];
+  spacing: 20px;
+}
+
+inputbar {
+  background-color: #151520;
+  text-color: @foreground;
+  border: 0px 0px 2px 0px;
+  border-color: @active;
+  border-radius: 4px;
+  padding: 12px;
+  spacing: 10px;
+}
+
+prompt {
+  background-color: transparent;
+  text-color: @active;
+  font: "JetBrainsMono Nerd Font 12";
+}
+
+entry {
+  background-color: transparent;
+  text-color: @foreground;
+  placeholder: "Search...";
+  placeholder-color: #4A4A6A;
+  font: "JetBrainsMono Nerd Font 12";
+}
+
+listview {
+  background-color: transparent;
+  columns: 1;
+  lines: 8;
+  spacing: 5px;
+  padding: 0px;
+}
+
+element {
+  background-color: transparent;
+  text-color: @foreground;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+element selected {
+  background-color: @selected;
+  text-color: @background;
+}
+
+element-icon {
+  size: 24px;
+  background-color: transparent;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5;
+}

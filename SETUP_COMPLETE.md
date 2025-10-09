@@ -7,23 +7,29 @@ Your Electric Dreams theme repository is ready to be published on GitHub!
 ### 1. Repository Structure
 ```
 electric-dreams-theme/
-├── .gitignore              # Git ignore rules
-├── .nojekyll              # Tell GitHub Pages not to use Jekyll
-├── CNAME                  # Custom domain config (optional)
-├── README.md              # Main repository README
-├── electric-dreams.tmux   # TPM entry point
+├── .gitignore            # Git ignore rules
+├── .nojekyll             # Disable Jekyll on GitHub Pages
+├── README.md              # Main repository overview
 ├── GITHUB_SETUP.md        # Step-by-step setup guide
+├── SETUP_COMPLETE.md      # This checklist
+├── docs/                  # GitHub Pages website
+│   ├── index.html
+│   └── [port]-electric-dreams.html
 ├── ports/                 # All theme ports
+│   ├── alacritty/
 │   ├── firefox/
+│   ├── gtk/
 │   ├── hyprland/
 │   ├── kitty/
+│   ├── mako/
+│   ├── rofi/
+│   ├── starship/
 │   ├── tmux/
 │   ├── vim/
 │   ├── vscode/
+│   ├── wezterm/
 │   └── waybar/
-└── docs/               # GitHub Pages website
-    ├── index.html
-    └── [port]-electric-dreams.html
+└── *.png                  # Theme artwork and previews
 ```
 
 ### 2. URLs Updated
@@ -33,13 +39,13 @@ All HTML files now reference:
 - Structure: `ports/[name]/`
 - Raw URLs: `https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/...`
 
-### 3. TMux Plugin Manager Support
-- Root level `electric-dreams.tmux` file created
-- Sources from `ports/tmux/electric-dreams.tmuxtheme`
-- Works with: `set -g @plugin 'nylanalyn/electric-dreams-theme'`
+### 3. New Ports Added
+- Terminal palettes for Alacritty and WezTerm
+- Rofi launcher, mako notifications, Starship prompt, and GTK overrides
+- Updated tmux instructions with manual install focus
 
 ### 4. GitHub Pages Ready
-- Website files in `/website` directory
+- Website files in `/docs` directory
 - `.nojekyll` file to prevent Jekyll processing
 - Will be hosted at: `https://nylan.cat/electric-dreams-theme/`
 
@@ -61,7 +67,7 @@ Follow the instructions in `GITHUB_SETUP.md`:
 3. **Enable GitHub Pages** in repository settings
    - Settings → Pages
    - Source: `main` branch
-   - Folder: `/website`
+   - Folder: `/docs`
 
 ## 🧪 Testing After Publishing
 
@@ -73,18 +79,11 @@ https://nylan.cat/electric-dreams-theme/
 ### Raw Files
 ```bash
 # Test tmux theme download
-curl -O https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.tmuxtheme
+curl -O https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/tmux/electric-dreams.conf
 
 # Test kitty theme download
 curl -O https://raw.githubusercontent.com/nylanalyn/electric-dreams-theme/main/ports/kitty/electric-dreams.conf
 ```
-
-### TPM Plugin
-Add to `~/.tmux.conf`:
-```bash
-set -g @plugin 'nylanalyn/electric-dreams-theme'
-```
-Then: `prefix + I`
 
 ### Vim Plugin
 Add to your vim config:
@@ -96,13 +95,14 @@ Plug 'nylanalyn/electric-dreams-theme'
 
 - Repository must be **public** for GitHub Pages to work (free tier)
 - GitHub Pages can take 1-2 minutes to build initially
-- The `/website` folder will be served at the root URL
+- The `/docs` folder will be served at the root URL
 - Raw file URLs use `raw.githubusercontent.com`, not regular `github.com`
 
 ## 🎨 What Works Now
 
 - ✅ Monorepo structure with all ports
-- ✅ TPM plugin manager support
+- ✅ tmux theme files for manual sourcing
+- ✅ New ports: Alacritty, WezTerm, Rofi, Mako, Starship, GTK
 - ✅ Vim plugin manager support (vim-plug, Vundle, Pathogen)
 - ✅ Direct curl downloads for all themes
 - ✅ GitHub Pages website ready
